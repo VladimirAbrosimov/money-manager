@@ -1,0 +1,49 @@
+@import "./variables.scss";
+
+html, body {
+  height: 100%;
+}
+
+html {
+  font-size: 10px;
+  min-width: var(--min-width-page);
+}
+
+body {
+  background-color: var(--background-color-page);
+  color: var(--text-color-primary);
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--font-size-medium);
+  min-width: var(--min-width-page);
+}
+
+
+@media (max-width: 620px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 620px) and (max-width: 760px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1366px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 1367px) and (max-width: 2289px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 2290px) {
+  html {
+    font-size: 13px;
+  }
+}

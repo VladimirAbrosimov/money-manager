@@ -1,0 +1,25 @@
+.form-element {
+  background-color: var(--background-color-form-field-default);
+  border: 1px solid var(--border-color-form-field-default);
+  border-radius: var(--border-radius-small);
+  color: var(--text-color-primary);
+  display: block;
+  font-size: var(--font-size-medium);
+  height: 4.2rem;
+  padding: 0 0.3em;
+
+  &:hover {
+    border-color: var(--border-color-form-field-hover);
+  }
+
+  &:focus {
+    background-color: var(--background-color-form-field-focus);
+    border-color: var(--border-color-form-field-focus);
+    outline: none;
+  }
+
+  &--error {
+    border-color: var(--color-error);
+  }
+
+}

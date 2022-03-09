@@ -1,0 +1,40 @@
+.login-register {
+  background-color: #fff;
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 0.4rem 2.4rem rgb(0 0 0 / 8%);
+  padding: 4.9rem 9.4rem;
+
+
+  &__wrap {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  }
+
+  &__button {
+    margin-top: 0.7em;
+  }
+
+  &__headline {
+    font-size: var(--font-size-huge);
+    margin-bottom: 2em;
+  }
+
+  &__form-field {
+    margin-top: 0.7em;
+    width: 23rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0.6em;
+    }
+  }
+
+  &__form-element {
+    width: 100%;
+  }
+}

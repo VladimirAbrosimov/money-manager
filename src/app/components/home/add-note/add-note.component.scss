@@ -1,0 +1,69 @@
+.add-note {
+  font-size: var(--font-size-medium);
+  margin-bottom: 4.4rem;
+
+  &__form {
+    display: none;
+    margin-top: 2.5rem;
+    user-select: none;
+  }
+
+  &__type-amount .add-note__form-element {
+    display: inline-block;
+  }
+
+  &__type {
+    margin-right: 0.8em;
+    min-width: 15rem;
+  }
+
+  &__amount {
+    text-align: center;
+    width: 10rem;
+  }
+
+  &__category {
+    margin: 1em 0;
+    min-width: 15rem;
+  }
+
+  &__commentary {
+    min-width: 33rem;
+  }
+
+  &__button {
+    margin-top: 1.6em;
+  }
+
+  &__open-close-btn {
+    cursor: pointer;
+    display: inline-flex;
+    position: relative;
+
+    i {
+      font-size: 1.8em;
+    }
+  }
+
+  &--active {
+    .open-close-btn__icon--open {
+      display: none;
+    }
+
+    .open-close-btn__icon--close {
+      display: block;
+    }
+
+    .add-note__form {
+      display: block;
+    }
+  }
+}
+
+.open-close-btn__icon--open {
+  display: block;
+}
+
+.open-close-btn__icon--close {
+  display: none;
+}

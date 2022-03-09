@@ -1,0 +1,29 @@
+<div class="add-note" [class.add-note--active]="isActive">
+  <div class="add-note__open-close-btn" (click)="toggleActive()">
+    <i class="open-close-btn__icon open-close-btn__icon--open icon-plus-outline"></i>
+    <i class="open-close-btn__icon open-close-btn__icon--close open-close-btn icon-cross-outline"></i>
+  </div>
+  <form class="add-note__form" [formGroup]="addNoteForm" (ngSubmit)="onSubmit()">
+    <div class="add-note__type-amount">
+      <select class="form-element add-note__type add-note__form-element" formControlName="type"
+              (ngModelChange)="onChangeType()">
+        <option *ngFor="let i of types" [ngValue]="i">
+          {{i.name}}
+        </option>
+      </select>
+      <input class="form-element add-note__amount add-note__form-element" formControlName="amount" type="number"
+             placeholder="сумма">
+    </div>
+    <select class="form-element add-note__category add-note__form-element" formControlName="category">
+      <option *ngFor="let i of categories" [ngValue]="i">
+        {{i}}
+      </option>
+    </select>
+    <input class="form-element add-note__commentary add-note__form-element" formControlName="commentary" type="text"
+           placeholder="комментарий">
+    <button class="button add-note__button" [disabled]="addNoteForm.invalid" type="submit">Добавить</button>
+  </form>
+</div>
+
+
+<!--[ngClass]="{'form-element&#45;&#45;error': formFields.amount.hasError('required')}-->

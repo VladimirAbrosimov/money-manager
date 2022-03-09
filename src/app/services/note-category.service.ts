@@ -28,6 +28,15 @@ export class NoteCategoryService {
     );
   }
 
+  deleteNoteCategory(noteCategory: NoteCategory) {
+    const body = {type: noteCategory.type, name: noteCategory.name, color: noteCategory.color};
+    console.log("rgreg")
+    return this.http.post(
+      this.SERVER_URL + '/deleteNoteCategory',
+      body
+    );
+  }
+
   getAllNoteCategories(): Observable<NoteCategory[]> {
     return this.http.get(
       this.SERVER_URL + '/getAllNoteCategories',

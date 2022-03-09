@@ -1,0 +1,49 @@
+:root {
+  --color-gray-1: #fcfcfc;
+  --color-gray-2: #ededed;
+  --color-gray-3: #d7d7d7;
+  --color-gray-4: #8d8d8d;
+  --color-gray-5: #333;
+  --color-gray-6: #dedede;
+  --color-red-1: #cc0000;
+  --color-yellow-1: #FDD023;
+  --color-blue-1: #69a2e4;
+  --color-blue-2: #5181b8;
+  --color-blue-3: #009bd6;
+  --color-green-1: #51b854;
+
+  --border-radius-small: 0.4rem;
+  --border-radius-medium: 0.6rem;
+  --border-radius-large: 1.0rem;
+
+  --font-size-small: 1.2rem;
+  --font-size-medium: 1.4rem;
+  --font-size-large: 1.6rem;
+  --font-size-extra-large: 1.8rem;
+  --font-size-extra-extra-large: 2.0rem;
+  --font-size-huge: 2.6rem;
+
+  --text-color-primary: #333;
+
+  --background-color-page: var(--color-gray-1);
+  --padding-page: 3rem 4rem;
+  --min-width-page: 480px;
+  --color-error: var(--color-red-1);
+  --text-color-link: var(--text-color-primary);
+  --text-color-note-type: var(--color-blue-3);
+
+  --border-color-nav: var(--color-gray-6);
+
+  --background-color-form-field-default: var(--color-gray-2);
+  --background-color-form-field-focus: #fff;
+  --border-color-form-field-default: var(--color-gray-3);
+  --border-color-form-field-hover: var(--color-gray-4);
+  --border-color-form-field-focus: var(--color-blue-2);
+
+  --background-color-button-default: var(--color-yellow-1);
+  --text-color-button-default: var(--color-gray-5);
+  --background-color-button-register: var(--color-green-1);
+  --background-color-button-login: var(--color-blue-2);
+  --text-color-button-login-register: #fff;
+
+}

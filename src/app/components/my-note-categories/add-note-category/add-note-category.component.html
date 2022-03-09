@@ -1,0 +1,12 @@
+<div class="add-note-category">
+    <form class="add-note-category__form" [formGroup]="addNoteCategoryForm" (ngSubmit)="onSubmit()">
+        <select class="form-element add-note-category__type add-note-category__field" formControlName="type">
+            <option *ngFor="let i of types" [ngValue]="i">
+                {{i.name}}
+            </option>
+        </select>
+        <input class="form-element add-note-category__name add-note-category__field" formControlName="name" placeholder="название категории" type="text">
+        <input class="form-element add-note-category__color add-note-category__field" formControlName="color" type="color">
+        <button class="button add-note-category__button" [disabled]="addNoteCategoryForm.invalid" type="submit" >Добавить</button>
+    </form>
+</div>

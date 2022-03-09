@@ -25,7 +25,6 @@ import { NoteCategoryItemComponent } from './components/my-note-categories/note-
 import { DateGroupComponent } from './components/home/date-group/date-group.component';
 import { IncomeExpenseChartComponent } from './components/home/statistics-for-month/income-expense-chart/income-expense-chart.component';
 import { ChartModule } from 'primeng/chart';
-import { AbstractDoughnutChartComponent } from './components/home/abstract-doughnut-chart/abstract-doughnut-chart.component';
 import { StatisticsForMonthComponent } from './components/home/statistics-for-month/statistics-for-month.component';
 
 registerLocaleData(localeRu, 'ru');
@@ -48,7 +47,6 @@ registerLocaleData(localeRu, 'ru');
     NoteCategoryItemComponent,
     DateGroupComponent,
     IncomeExpenseChartComponent,
-    AbstractDoughnutChartComponent,
     StatisticsForMonthComponent,
   ],
   imports: [

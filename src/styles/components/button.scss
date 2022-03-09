@@ -1,0 +1,29 @@
+@import "../base/variables.scss";
+
+.button {
+  background-color: var(--background-color-button-default);
+  border: none;
+  border-radius: var(--border-radius-small);
+  color: var(--text-color-button-default);
+  cursor: pointer;
+  display: inline-block;
+  font-size: var(--font-size-medium);
+  padding: 0.7em 1.4em;
+  text-decoration: none;
+
+  &:hover {
+      filter: opacity(80%);
+  }
+}
+
+.button--login {
+    background-color: var(--background-color-button-login);
+}
+
+.button--register {
+    background-color: var(--background-color-button-register);
+}
+
+.button--login, .button--register {
+  color: var(--text-color-button-login-register);
+}

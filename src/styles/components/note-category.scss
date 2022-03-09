@@ -1,0 +1,20 @@
+:host {
+    --category-color: #c7c7c7;
+}
+
+.note-category {
+    display: block;
+    font-size: var(--font-size-large);
+
+    &::before {
+        $size: 0.8em;
+        content: '';
+        display: inline-block;
+        width: $size;
+        height: $size;
+        margin-right: 0.3em;
+        border-radius: 0.1em;
+        background-color: var(--category-color);
+    }
+}
+

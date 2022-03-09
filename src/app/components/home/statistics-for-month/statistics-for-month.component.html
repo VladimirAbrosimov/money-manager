@@ -1,0 +1,17 @@
+<div class="expense-statistics">
+  <div class="total-money">
+    <div class="total-money__by-type">
+      <span class="total-money__note-type" (click)="switchNoteType()">{{noteTypeName}}</span>
+      за
+      <span class="total-money__month">{{currentMonth}}&#160;</span>
+      <span *ngIf="noteType == 'EXPENSE'" class="total-money__value">{{totalMoneyInCurrentMonthExpense}}</span>
+      <span *ngIf="noteType == 'INCOME'" class="total-money__value">{{totalMoneyInCurrentMonthIncome}}</span>
+    </div>
+    <div class="total-money__balance-per-month">
+      <span>Остаток {{totalMoneyInCurrentMonth}}</span>
+    </div>
+  </div>
+  <app-income-expense-chart *ngIf="noteType == 'EXPENSE'" noteType='EXPENSE'></app-income-expense-chart>
+  <app-income-expense-chart *ngIf="noteType == 'INCOME'" noteType='INCOME'></app-income-expense-chart>
+</div>
+

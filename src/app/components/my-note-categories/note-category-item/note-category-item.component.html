@@ -1,0 +1,7 @@
+<div [ngClass]="{'note-category-row--pre-removed':isRemoved}" class="note-category-row">
+  <span class="note-category">{{category.name}}</span>
+  <div class="note-category-row__remove-restore-btn">
+    <i (click)="removeNoteCategory()" class="remove-restore-btn__icon remove-restore-btn__remove icon-cross"></i>
+    <i (click)="restoreNoteCategory()" class="remove-restore-btn__icon remove-restore-btn__restore icon-plus"></i>
+  </div>
+</div>

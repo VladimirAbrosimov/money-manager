@@ -1,0 +1,21 @@
+.total-money {
+  font-size: var(--font-size-large);
+
+  &__by-type {
+    margin-bottom: 0.5rem;
+  }
+
+  &__note-type {
+    color: var(--text-color-note-type);
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  &__value {
+    font-weight: 500;
+  }
+
+  &__balance-per-month {
+    margin-bottom: 0.7rem;
+  }
+}
