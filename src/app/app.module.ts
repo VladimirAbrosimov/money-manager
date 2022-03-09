@@ -1,18 +1,78 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AddNoteComponent } from './components/home/add-note/add-note.component';
+import { AddNoteCategoryComponent } from './components/my-note-categories/add-note-category/add-note-category.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { NavComponent } from './components/nav/nav.component';
+import { NoteItemComponent } from './components/home/note-item/note-item.component';
+import { NotesListComponent } from './components/home/notes-list/notes-list.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyNoteCategoriesComponent } from './components/my-note-categories/my-note-categories.component';
+import { NoteCategoriesListComponent } from './components/my-note-categories/note-categories-list/note-categories-list.component';
+import { NoteCategoryItemComponent } from './components/my-note-categories/note-category-item/note-category-item.component';
+import { DateGroupComponent } from './components/home/date-group/date-group.component';
+import { IncomeExpenseChartComponent } from './components/home/statistics-for-month/income-expense-chart/income-expense-chart.component';
+import { ChartModule } from 'primeng/chart';
+import { AbstractDoughnutChartComponent } from './components/home/abstract-doughnut-chart/abstract-doughnut-chart.component';
+import { StatisticsForMonthComponent } from './components/home/statistics-for-month/statistics-for-month.component';
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddNoteComponent,
+    AddNoteCategoryComponent,
+    HomeComponent,
+    LoginComponent,
+    LogoutButtonComponent,
+    NavComponent,
+    NoteItemComponent,
+    NotesListComponent,
+    PageNotFoundComponent,
+    RegisterComponent,
+    MyNoteCategoriesComponent,
+    NoteCategoriesListComponent,
+    NoteCategoryItemComponent,
+    DateGroupComponent,
+    IncomeExpenseChartComponent,
+    AbstractDoughnutChartComponent,
+    StatisticsForMonthComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ChartModule,
   ],
-  providers: [],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'ru'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,14 @@
+.logout-button {
+  align-items: center;
+  display: flex;
+  font-size: var(--font-size-large);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__icon {
+    font-size: 1.1em;
+    padding-left: 0.2em;
+  }
+}

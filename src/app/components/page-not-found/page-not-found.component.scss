@@ -1,0 +1,17 @@
+.page-not-found {
+  padding: 20rem 0;
+  &__wrap {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__headline {
+    font-size: 7.8rem;
+  }
+
+  &__text {
+    font-size: 3.6rem;
+    margin-top: 0.8em;
+  }
+}

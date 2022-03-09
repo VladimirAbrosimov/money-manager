@@ -1,0 +1,13 @@
+<div class="login-register__wrap">
+    <div class="login-register">
+        <h1 class="headline1 login-register__headline">Вход</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div>
+                <input class="form-element login-register__input-text login-register__form-field" formControlName="username" type="text" placeholder="Имя пользователя"/>
+                <input class="form-element login-register__input-text login-register__form-field" formControlName="password" type="password" placeholder="Пароль"/>
+            </div>
+            <button class="button button--login login-register__button" [disabled]="loginForm.invalid" type="submit">Войти</button>
+        </form>
+        <a class="button button--register login-register__button" routerLink="/register">Регистрация</a>
+    </div>
+</div>

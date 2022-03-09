@@ -1,0 +1,15 @@
+<div [ngClass]="{'nav--mobile': isScreenWidthTooSmall}" class="nav">
+  <nav class="nav__inner">
+    <a routerLink="/home" class="link nav__logo">MoneyManager</a>
+    <span class="nav__username">{{username}}</span>
+    <div class="navigation">
+      <i (click)="toggleActive()" class="navigation__hamburger icon-view-list"></i>
+      <div *ngIf="isActive || !isScreenWidthTooSmall" class="navigation__links">
+        <a routerLink="/statistics" class="link navigation__item">Статистика</a>
+        <a routerLink="/my-note-categories" class="link navigation__item">Мои категории</a>
+        <app-logout-button class="navigation__item nav__logout"></app-logout-button>
+      </div>
+
+    </div>
+  </nav>
+</div>
