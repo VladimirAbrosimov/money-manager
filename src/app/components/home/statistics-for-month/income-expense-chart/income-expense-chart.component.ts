@@ -3,8 +3,8 @@ import {NoteType} from "../../../../models/note-type";
 import {Subscription} from "rxjs";
 import {IncomeExpenseStatisticsService} from "../../../../services/income-expense-statistics.service";
 import {SharedNotesService} from "../../../../services/shared-notes.service";
-import {Note} from "../../../../models/note";
-import {TotalMoney} from "../../../../models/total-money";
+import {IncomeExpenseStatisticsForCategory} from "../../../../models/income-expense-statistics-for-category";
+import {ChartDataParserService} from "../../../../services/chart-data-parser.service";
 
 type ChartData = {
   labels: string[],
@@ -20,7 +20,6 @@ type ChartData = {
 export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
   @Input() noteType: NoteType;
   type: string;
-  size: string = '400';
   data: any;
   options: any;
 
@@ -28,13 +27,14 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
 
   constructor(
     private incomeExpenseStatisticsService: IncomeExpenseStatisticsService,
-    private sharedNotesService: SharedNotesService
+    private sharedNotesService: SharedNotesService,
+    private chartDataParserService: ChartDataParserService
   ) {
   }
 
   ngOnInit(): void {
     this.loadChart(this.noteType);
-    this.noteCreatedSubscription = this.sharedNotesService.currentMessage.subscribe((note: Note) => {
+    this.noteCreatedSubscription = this.sharedNotesService.currentMessage.subscribe(() => {
       this.loadChart(this.noteType);
     })
   }
@@ -44,9 +44,9 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
   }
 
   private loadChart(noteType: NoteType): void {
-    this.incomeExpenseStatisticsService.getTotalMoneyInCurrentMonthByTypeSortedByCategory(noteType).subscribe({
-      next: (totalMoneys: TotalMoney[]) => {
-        const chartData: ChartData = this.parseChartData(totalMoneys);
+    this.incomeExpenseStatisticsService.getIncomeExpenseStatisticsInCurrentMonthByTypeSortedByCategory(noteType).subscribe({
+      next: (incomeExpenseStatisticsForCategories: IncomeExpenseStatisticsForCategory[]) => {
+        const chartData: ChartData = this.chartDataParserService.parseIncomeExpenseStatisticsForCategory(incomeExpenseStatisticsForCategories);
         this.initChart(chartData);
       }
     });
@@ -65,14 +65,14 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
     };
 
     this.options = {
-      responsive: false,
-      maintainAspectRatio: false,
+      responsive: true,
+      maintainAspectRatio: true,
       animation: {
         duration: 0
       },
       plugins: {
         legend: {
-          display: true,
+          align: 'start',
           position: 'top',
           labels: {
             font: {
@@ -83,23 +83,5 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
         }
       }
     }
-  }
-
-  private parseChartData(totalMoneys: TotalMoney[]): ChartData {
-    let names = [];
-    let amounts = [];
-    let colors = [];
-
-    totalMoneys.forEach((totalMoney: TotalMoney) => {
-      names.push(totalMoney.category.name);
-      amounts.push(totalMoney.amount);
-      colors.push(totalMoney.category.color);
-    });
-
-    return {
-      labels: names,
-      data: amounts,
-      colors: colors
-    };
   }
 }

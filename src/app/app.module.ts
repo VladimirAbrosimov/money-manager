@@ -26,6 +26,9 @@ import { DateGroupComponent } from './components/home/date-group/date-group.comp
 import { IncomeExpenseChartComponent } from './components/home/statistics-for-month/income-expense-chart/income-expense-chart.component';
 import { ChartModule } from 'primeng/chart';
 import { StatisticsForMonthComponent } from './components/home/statistics-for-month/statistics-for-month.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { IncomeExpenseForYearChartComponent } from './components/statistics/income-expense-for-year-chart/income-expense-for-year-chart.component';
+import { IncomeExpenseForAllTimeSortedByCategoryChartComponent } from './components/statistics/income-expense-for-all-time-sorted-by-category-chart/income-expense-for-all-time-sorted-by-category-chart.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -48,6 +51,9 @@ registerLocaleData(localeRu, 'ru');
     DateGroupComponent,
     IncomeExpenseChartComponent,
     StatisticsForMonthComponent,
+    StatisticsComponent,
+    IncomeExpenseForYearChartComponent,
+    IncomeExpenseForAllTimeSortedByCategoryChartComponent,
   ],
   imports: [
     BrowserModule,

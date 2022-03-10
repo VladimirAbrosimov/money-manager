@@ -7,27 +7,33 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedOutGuard } from './guards/logged-out.guard';
+import {StatisticsComponent} from "./components/statistics/statistics.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     component: LoginComponent,
     canActivate: [LoggedOutGuard]
   },
-  { 
-    path: 'register', 
+  {
+    path: 'register',
     component: RegisterComponent,
     canActivate: [LoggedOutGuard]
   },
-  { 
-    path: 'home', 
+  {
+    path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
-  { 
-    path: 'my-note-categories', 
+  {
+    path: 'my-note-categories',
     component: MyNoteCategoriesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', component: PageNotFoundComponent }

@@ -1,6 +1,6 @@
 import { NoteCategory } from "./note-category";
 
-export interface TotalMoney {
+export interface IncomeExpenseStatisticsForCategory {
     category: NoteCategory,
     amount: number
 }

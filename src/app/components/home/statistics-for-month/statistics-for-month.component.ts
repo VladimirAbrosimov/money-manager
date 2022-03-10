@@ -4,6 +4,7 @@ import {NoteType} from "../../../models/note-type";
 import {SharedNotesService} from "../../../services/shared-notes.service";
 import {Subscription} from "rxjs";
 import {Note} from "../../../models/note";
+import {IncomeExpenseStatisticsForType} from "../../../models/income-expense-statistics-for-type";
 
 @Component({
   selector: 'app-statistics-for-month',
@@ -11,9 +12,9 @@ import {Note} from "../../../models/note";
   styleUrls: ['./statistics-for-month.component.scss']
 })
 export class StatisticsForMonthComponent implements OnInit, OnDestroy {
-  public totalMoneyInCurrentMonth: number = 0;
-  public totalMoneyInCurrentMonthExpense: number = 0;
-  public totalMoneyInCurrentMonthIncome: number = 0;
+  public totalAmountInCurrentMonth: number = 0;
+  public expenseAmountInCurrentMonth: number = 0;
+  public incomeAmountInCurrentMonth: number = 0;
   public noteType: NoteType = 'EXPENSE';
   public noteTypeName: string = this.noteType == 'EXPENSE' ? 'Расходы': 'Доходы';
   public currentMonth: string = this.getMonthNameByNumber(new Date().getMonth());
@@ -27,36 +28,40 @@ export class StatisticsForMonthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadTotalMoneyInCurrentMonth();
-    this.loadTotalMoneyInCurrentMonthByType('EXPENSE');
-    this.loadTotalMoneyInCurrentMonthByType('INCOME');
+    this.loadTotalAmountInCurrentMonth();
+    this.loadIncomeExpenseAmountInCurrentMonth();
     this.noteCreatedSubscription = this.sharedNotesService.currentMessage.subscribe({
       next: (note: Note) => {
         if (note) {
-          this.loadTotalMoneyInCurrentMonth();
-          this.loadTotalMoneyInCurrentMonthByType(note.type);
+          this.loadTotalAmountInCurrentMonth();
+          this.loadIncomeExpenseAmountInCurrentMonth();
         }
       }
     });
+
+
+    this.incomeExpenseStatisticsService.getIncomeExpenseStatisticsForCurrentYearSortedByMonth().subscribe();
   }
 
   ngOnDestroy(): void {
     this.noteCreatedSubscription.unsubscribe();
   }
 
-  private loadTotalMoneyInCurrentMonth(): void {
-    this.incomeExpenseStatisticsService.getTotalMoneyInCurrentMonth().subscribe((totalMoney: number) => {
-      this.totalMoneyInCurrentMonth = totalMoney;
+  private loadTotalAmountInCurrentMonth(): void {
+    this.incomeExpenseStatisticsService.getTotalAmountInCurrentMonth().subscribe((totalMoney: number) => {
+      this.totalAmountInCurrentMonth = totalMoney;
     });
   }
 
-  private loadTotalMoneyInCurrentMonthByType(noteType: NoteType): void {
-    this.incomeExpenseStatisticsService.getTotalMoneyInCurrentMonthByType(noteType).subscribe((totalMoney: number) => {
-      if (noteType == 'INCOME') {
-        this.totalMoneyInCurrentMonthIncome = totalMoney;
-      } else {
-        this.totalMoneyInCurrentMonthExpense = totalMoney;
-      }
+  private loadIncomeExpenseAmountInCurrentMonth(): void {
+    this.incomeExpenseStatisticsService.getIncomeExpenseStatisticsInCurrentMonthSortedByType().subscribe((incomeExpenseStatisticsForType: IncomeExpenseStatisticsForType[]) => {
+      incomeExpenseStatisticsForType.map((incomeExpenseStatisticsForType: IncomeExpenseStatisticsForType) => {
+        if (incomeExpenseStatisticsForType.type == 'INCOME') {
+          this.incomeAmountInCurrentMonth = incomeExpenseStatisticsForType.amount;
+        } else if (incomeExpenseStatisticsForType.type == 'EXPENSE') {
+          this.expenseAmountInCurrentMonth = incomeExpenseStatisticsForType.amount;
+        }
+      });
     });
   }
 
