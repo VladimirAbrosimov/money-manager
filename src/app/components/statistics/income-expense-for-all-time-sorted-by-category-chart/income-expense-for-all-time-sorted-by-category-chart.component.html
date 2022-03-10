@@ -1,0 +1,8 @@
+<div class="income-expense-for-all-time-sorted-by-category-chart">
+  <h2 class="income-expense-for-all-time-sorted-by-category-chart__title">
+    <span *ngIf="noteType=='EXPENSE'">Расходы </span>
+    <span *ngIf="noteType=='INCOME'">Доходы </span>
+    за все время
+  </h2>
+  <p-chart [type]="type" [data]="data" [options]="options"></p-chart>
+</div>

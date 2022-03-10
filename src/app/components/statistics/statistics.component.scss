@@ -1,0 +1,15 @@
+.statistics {
+  padding: var(--padding-page);
+  margin: 0 auto;
+  width: calc(100% - var(--padding-page));
+  max-width: 1400px;
+}
+
+.income-expense-for-all-time-sorted-by-category-charts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 6rem;
+  width: 100%;
+
+}
