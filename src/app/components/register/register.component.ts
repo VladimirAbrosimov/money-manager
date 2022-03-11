@@ -84,7 +84,13 @@ export class RegisterComponent implements OnInit {
     const username = this.formFields.username.value;
     const password = this.formFields.password.value;
     const passwordConfirm = this.formFields.password.value;
-    const user = new User(username, password, passwordConfirm);
+
+    const user: User = {
+      username,
+      password,
+      passwordConfirm
+    }
+
     this.userService.addUser(user).subscribe({
       complete: () => {
         this.userService.authUser(user).subscribe({

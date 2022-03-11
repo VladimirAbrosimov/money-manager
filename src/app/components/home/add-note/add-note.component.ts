@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Note } from 'src/app/models/note';
 import { NoteCategoryService } from 'src/app/services/note-category.service';
@@ -12,8 +12,8 @@ import { SharedNotesService } from 'src/app/services/shared-notes.service';
   templateUrl: './add-note.component.html',
   styleUrls: ['./add-note.component.scss']
 })
-export class AddNoteComponent implements OnInit {
-  isActive: boolean = true;
+export class AddNoteComponent implements OnInit, OnDestroy {
+  isFormExpanded: boolean = true;
   addNoteForm: FormGroup;
 
   private categoriesExpense: string[] = [];
@@ -59,12 +59,16 @@ export class AddNoteComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    this.sharedNotesService.changeMessage(null);
+  }
+
   get formFields() {
     return this.addNoteForm.controls;
   }
 
-  public toggleActive(): void {
-    this.isActive = !this.isActive;
+  public collapseExpandForm(): void {
+    this.isFormExpanded = !this.isFormExpanded;
   }
 
   public onChangeType(): void {
@@ -83,10 +87,15 @@ export class AddNoteComponent implements OnInit {
     const amount = this.formFields.amount.value;
     const commentary = this.formFields.commentary.value;
 
-    const note = new Note(type, category, amount, commentary);
+    const note: Note = {
+      type,
+      category,
+      amount,
+      commentary
+    };
 
     this.noteService.saveNote(type, category, amount, commentary).subscribe({
       complete: () => this.sharedNotesService.changeMessage(note)
-    }); // CHANGE TO NOTE
+    });
   }
 }

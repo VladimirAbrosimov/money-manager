@@ -49,7 +49,11 @@ export class NoteCategoryService {
         const name = noteCategory['name'];
         const color = noteCategory['color'];
 
-        return new NoteCategory(type, name, color);
+        return {
+          type,
+          name,
+          color
+        }
       });
     }));
   }
@@ -71,7 +75,11 @@ export class NoteCategoryService {
         const name = noteCategory['name'];
         const color = noteCategory['color'];
 
-        return new NoteCategory(type, name, color);
+        return {
+          type,
+          name,
+          color
+        }
       });
     }));
   }

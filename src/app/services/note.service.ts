@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import { Note } from '../models/note';
-import { NoteCategory } from '../models/note-category';
+import {Note} from '../models/note';
+import {NoteCategory} from '../models/note-category';
+import {NoteType} from "../models/note-type";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class NoteService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   getAllNotes(): Observable<Note[]> {
     return this.http.get(
@@ -23,17 +25,23 @@ export class NoteService {
       }
     ).pipe(map((notes: any) => {
       return notes.map((note: any) => {
-        const type = note.type;
-        const category = new NoteCategory(
-          note.category.type,
-          note.category.name,
-          note.category.color
-        );
-        const amount = note.amount;
-        const date = note.date;
-        const commentary = note.commentary;
+        const type: NoteType = note.type;
+        const category: NoteCategory = {
+          type: note.category.type,
+          name: note.category.name,
+          color: note.category.color
+        }
+        const amount: number = note.amount;
+        const date: Date = note.date;
+        const commentary: string = note.commentary;
 
-        return new Note(type, category, amount, commentary, date);
+        return {
+          type,
+          category,
+          amount,
+          commentary,
+          date
+        }
       });
     }));
   }
@@ -45,21 +53,27 @@ export class NoteService {
         responseType: 'json'
       }
     ).pipe(map((note: any) => {
-        const type = note.type;
-        const category = new NoteCategory(
-          note.category.type,
-          note.category.name,
-          note.category.color
-        );
-        const amount = note.amount;
-        const date = note.date;
-        const commentary = note.commentary;
+      const type: NoteType = note.type;
+      const category: NoteCategory = {
+        type: note.category.type,
+        name: note.category.name,
+        color: note.category.color
+      }
+      const amount: number = note.amount;
+      const date: Date = note.date;
+      const commentary: string = note.commentary;
 
-        return new Note(type, category, amount, commentary, date);
+      return {
+        type,
+        category,
+        amount,
+        commentary,
+        date
+      }
     }));
   }
 
-  saveNote(_type: string, _category: string, _amount: number, _commentary: string) { // CHANGE TO NOTE
+  saveNote(_type: string, _category: string, _amount: number, _commentary: string) {
     const body = {type: _type, amount: _amount, commentary: _commentary};
     const params = new HttpParams()
       .set('noteCategoryName', _category);

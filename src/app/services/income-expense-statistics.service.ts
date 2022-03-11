@@ -61,7 +61,11 @@ export class IncomeExpenseStatisticsService {
       }
     ).pipe(map((statisticsList: any) => {
       return statisticsList.map((statistics: any) => {
-        const category: NoteCategory = new NoteCategory(statistics.category.type, statistics.category.name, statistics.category.color);
+        const category: NoteCategory = {
+          type: statistics.category.type,
+          name: statistics.category.name,
+          color: statistics.category.color
+        }
         const amount: number = statistics.amount;
 
         return {
@@ -84,7 +88,11 @@ export class IncomeExpenseStatisticsService {
       }
     ).pipe(map((statisticsList: any) => {
       return statisticsList.map((statistics: any) => {
-        const category: NoteCategory = new NoteCategory(statistics.category.type, statistics.category.name, statistics.category.color);
+        const category: NoteCategory = {
+          type: statistics.category.type,
+          name: statistics.category.name,
+          color: statistics.category.color
+        }
         const amount: number = statistics.amount;
 
         return {

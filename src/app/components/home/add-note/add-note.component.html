@@ -1,5 +1,5 @@
-<div class="add-note" [class.add-note--active]="isActive">
-  <div class="add-note__open-close-btn" (click)="toggleActive()">
+<div class="add-note" [class.add-note--active]="isFormExpanded">
+  <div class="add-note__open-close-btn" (click)="collapseExpandForm()">
     <i class="open-close-btn__icon open-close-btn__icon--open icon-plus-outline"></i>
     <i class="open-close-btn__icon open-close-btn__icon--close open-close-btn icon-cross-outline"></i>
   </div>

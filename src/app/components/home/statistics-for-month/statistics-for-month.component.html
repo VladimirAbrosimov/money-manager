@@ -12,7 +12,7 @@
       <span class="total-money__value">{{totalAmountInCurrentMonth | currency: currency:'symbol': '1.0-0'}}</span>
     </div>
   </div>
-  <app-income-expense-chart *ngIf="noteType == 'EXPENSE'" noteType='EXPENSE'></app-income-expense-chart>
-  <app-income-expense-chart *ngIf="noteType == 'INCOME'" noteType='INCOME'></app-income-expense-chart>
+  <app-income-expense-chart [hidden]="noteType != 'EXPENSE'" noteType='EXPENSE'></app-income-expense-chart>
+  <app-income-expense-chart [hidden]="noteType != 'INCOME'" noteType='INCOME'></app-income-expense-chart>
 </div>
 

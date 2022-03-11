@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NoteCategory } from 'src/app/models/note-category';
 import { NoteCategoryService } from 'src/app/services/note-category.service';
@@ -9,7 +9,7 @@ import {SharedNoteCategoriesService} from "../../../services/shared-note-categor
   templateUrl: './add-note-category.component.html',
   styleUrls: ['./add-note-category.component.scss']
 })
-export class AddNoteCategoryComponent implements OnInit {
+export class AddNoteCategoryComponent implements OnInit, OnDestroy {
   isActive: boolean;
   addNoteCategoryForm: FormGroup;
 
@@ -33,6 +33,10 @@ export class AddNoteCategoryComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.sharedNoteCategoriesService.changeMessage(null);
+  }
+
   get formFields() {
     return this.addNoteCategoryForm.controls;
   }
@@ -42,7 +46,11 @@ export class AddNoteCategoryComponent implements OnInit {
     const name = this.formFields.name.value;
     const color = this.formFields.color.value;
 
-    const noteCategory = new NoteCategory(type, name, color);
+    const noteCategory: NoteCategory = {
+      type,
+      name,
+      color
+    };
 
     this.noteCategoryService.saveNoteCategory(noteCategory).subscribe({
       complete: () => this.sharedNoteCategoriesService.changeMessage(noteCategory)

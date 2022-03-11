@@ -49,7 +49,6 @@ export class NoteCategoriesListComponent implements OnInit, OnDestroy {
     this.noteCategoryCreatedSubscription = this.sharedNoteCategoriesService.currentMessage.subscribe({
       next: (noteCategory: NoteCategory) => {
         if (this.lastNoteCategory != noteCategory) {
-          console.log(noteCategory);
           this.appendNoteCategoryItemElementToTheTop(noteCategory);
         }
       }
