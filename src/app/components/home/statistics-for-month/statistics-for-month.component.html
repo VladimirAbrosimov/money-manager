@@ -4,12 +4,12 @@
       <span class="total-money__note-type" (click)="switchNoteType()">{{noteTypeName}}</span>
       за
       <span class="total-money__month">{{currentMonth}}&#160;</span>
-      <span *ngIf="noteType == 'EXPENSE'" class="total-money__value">{{expenseAmountInCurrentMonth}}</span>
-      <span *ngIf="noteType == 'INCOME'" class="total-money__value">{{incomeAmountInCurrentMonth}}</span>
+      <span *ngIf="noteType == 'EXPENSE'" class="total-money__value">{{expenseAmountInCurrentMonth | currency: currency:'symbol': '1.0-0'}}</span>
+      <span *ngIf="noteType == 'INCOME'" class="total-money__value">{{incomeAmountInCurrentMonth | currency: currency:'symbol': '1.0-0'}}</span>
     </div>
     <div class="total-money__balance-per-month">
       Итого
-      <span class="total-money__value">{{totalAmountInCurrentMonth}}</span>
+      <span class="total-money__value">{{totalAmountInCurrentMonth | currency: currency:'symbol': '1.0-0'}}</span>
     </div>
   </div>
   <app-income-expense-chart *ngIf="noteType == 'EXPENSE'" noteType='EXPENSE'></app-income-expense-chart>

@@ -1,32 +1,29 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, of, ReplaySubject} from "rxjs";
-import {catchError, filter, map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {mapTo, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigurationService {
-  private configurationSubject = new ReplaySubject<any>(1);
+  private configuration = {};
 
-  constructor(
-    private httpClient: HttpClient
-  ) {
-    this.load();
+  constructor(private httpClient: HttpClient) {
   }
 
-  load(): void {
-    this.httpClient.get('/assets/config.json').pipe(
-      catchError(() => of(null)),
-      filter(Boolean)
-    ).subscribe((configuration: any) => this.configurationSubject.next(configuration));
-  }
-
-  getValue(key: string, defaultValue?: any): Observable<any> {
-    return this.configurationSubject.pipe(
-        map((configuration: any) => configuration[key] || defaultValue),
+  load(): Observable<void> {
+    return this.httpClient.get('/assets/config.json')
+      .pipe(
+        tap((configuration: any) => this.configuration = configuration),
+        mapTo(undefined),
       );
   }
+
+  getValue(key: string, defaultValue?: any): any {
+    return this.configuration[key] || defaultValue;
+  }
+
 }
 
 export function initConfig(configurationService: ConfigurationService) {

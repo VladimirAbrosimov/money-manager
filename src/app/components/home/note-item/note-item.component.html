@@ -1,6 +1,6 @@
 <p class="note note--{{type}}">
     <i class="note__icon icon-amount-{{type}}"></i>
-    <span class="note__item note__amount note__amount--{{type}}">{{amount}}</span>
+    <span class="note__item note__amount note__amount--{{type}}">{{amount | currency: currency:'symbol': '1.0-0'}}</span>
     <span class="note__item note-category note-category--{{category.name}}">{{category.name}}</span>
     <span class="note__item note__commentary">{{commentary}}</span>
 </p>

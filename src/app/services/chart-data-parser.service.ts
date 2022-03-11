@@ -15,6 +15,8 @@ export class ChartDataParserService {
     let colors = [];
 
     incomeExpenseStatisticsForCategories.forEach((incomeExpenseStatisticsForCategory: IncomeExpenseStatisticsForCategory) => {
+      if (incomeExpenseStatisticsForCategory.amount == 0) return;
+
       names.push(incomeExpenseStatisticsForCategory.category.name);
       amounts.push(incomeExpenseStatisticsForCategory.amount);
       colors.push(incomeExpenseStatisticsForCategory.category.color);

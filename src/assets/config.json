@@ -1,3 +1,53 @@
 {
-  "currency": "RUB"
+  "currency": "RUB",
+  "incomeAmountBarColor": "#238823",
+  "expenseAmountBarColor": "#d2222d",
+  "totalAmountBarColor": "#264b96",
+
+  "barChartOptions": {
+    "responsive": true,
+    "maintainAspectRatio": true,
+    "animation": {
+      "duration": 0
+    },
+    "plugins": {
+      "legend": {
+        "position": "top",
+        "labels": {
+          "boxWidth": 30,
+          "boxHeight": 15,
+          "font": {
+            "family": "Montserrat",
+            "size": 16
+          }
+        }
+      }
+    },
+    "elements": {
+      "bar": {
+        "borderRadius": 6
+      }
+    }
+  },
+  "doughnutAndPieChartsOptions":  {
+    "responsive": true,
+    "maintainAspectRatio": true,
+    "animation": {
+      "duration": 0
+    },
+    "plugins": {
+      "legend": {
+        "align": "start",
+        "position": "top",
+        "labels": {
+          "boxWidth": 30,
+          "boxHeight": 15,
+          "font": {
+            "family": "Montserrat",
+            "size": 16
+          }
+        }
+      }
+    }
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IncomeExpenseStatisticsService} from "../../../services/income-expense-statistics.service";
 import {IncomeExpenseStatisticsForMonth} from "../../../models/income-expense-statistics-for-month";
 import {ChartDataParserService} from "../../../services/chart-data-parser.service";
+import {ConfigurationService} from "../../../services/configuration.service";
 
 type ChartData = {
   labels: string[],
@@ -14,13 +15,13 @@ type ChartData = {
   styleUrls: ['./income-expense-for-year-chart.component.scss']
 })
 export class IncomeExpenseForYearChartComponent implements OnInit {
-  size: string = '400';
   data: any;
   options: any;
 
   constructor(
     private incomeExpenseStatisticsService: IncomeExpenseStatisticsService,
-    private chartDataParserService: ChartDataParserService
+    private chartDataParserService: ChartDataParserService,
+    private configurationService: ConfigurationService
   ) { }
 
   ngOnInit(): void {
@@ -46,52 +47,27 @@ export class IncomeExpenseForYearChartComponent implements OnInit {
           type: 'line',
           label: 'Итого',
           data: chartData.data[2],
-          backgroundColor: '#264b96',
-          borderColor: '#264b96'
+          backgroundColor: this.configurationService.getValue('totalAmountBarColor'),
+          borderColor: this.configurationService.getValue('totalAmountBarColor')
         },
         {
           type: 'bar',
           label: 'Доходы',
           data: chartData.data[0],
-          backgroundColor: '#238823',
-          borderColor: '#238823'
+          backgroundColor: this.configurationService.getValue('incomeAmountBarColor'),
+          borderColor: this.configurationService.getValue('incomeAmountBarColor')
         },
         {
           type: 'bar',
           label: 'Расходы',
           data: chartData.data[1],
-          backgroundColor: '#d2222d',
-          borderColor: '#d2222d'
+          backgroundColor: this.configurationService.getValue('expenseAmountBarColor'),
+          borderColor: this.configurationService.getValue('expenseAmountBarColor')
         }
       ]
     };
 
-    this.options = {
-      responsive: true,
-      maintainAspectRatio: true,
-      animation: {
-        duration: 0
-      },
-      plugins: {
-        legend: {
-          display: true,
-          position: 'top',
-          labels: {
-            boxWidth: 30,
-            boxHeight: 15,
-            font: {
-              family: 'Montserrat',
-              size: 16
-            }
-          }
-        }
-      },
-      elements: {
-        bar: {
-          borderRadius: 6
-        }
-      }
-    }
+    this.options = this.configurationService.getValue("barChartOptions");
   }
 
 }

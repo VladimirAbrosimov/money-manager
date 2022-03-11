@@ -33,8 +33,6 @@ export class NoteCategoriesListComponent implements OnInit, OnDestroy {
     ['INCOME', undefined],
     ['EXPENSE', undefined]
   ]);
-  // private topNoteCategoryItemComponentIncome: ComponentRef<NoteCategoryItemComponent>;
-  // private topNoteCategoryItemComponentExpense: ComponentRef<NoteCategoryItemComponent>;
   private lastNoteCategory: NoteCategory;
 
   constructor(

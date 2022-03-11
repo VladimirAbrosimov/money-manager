@@ -5,6 +5,7 @@ import {SharedNotesService} from "../../../services/shared-notes.service";
 import {Subscription} from "rxjs";
 import {Note} from "../../../models/note";
 import {IncomeExpenseStatisticsForType} from "../../../models/income-expense-statistics-for-type";
+import {ConfigurationService} from "../../../services/configuration.service";
 
 @Component({
   selector: 'app-statistics-for-month',
@@ -18,16 +19,19 @@ export class StatisticsForMonthComponent implements OnInit, OnDestroy {
   public noteType: NoteType = 'EXPENSE';
   public noteTypeName: string = this.noteType == 'EXPENSE' ? 'Расходы': 'Доходы';
   public currentMonth: string = this.getMonthNameByNumber(new Date().getMonth());
+  public currency;
 
   private noteCreatedSubscription: Subscription;
 
   constructor(
     private incomeExpenseStatisticsService: IncomeExpenseStatisticsService,
     private sharedNotesService: SharedNotesService,
+    private configurationService: ConfigurationService
   ) {
   }
 
   ngOnInit(): void {
+    this.currency = this.configurationService.getValue('currency', 'RUB');
     this.loadTotalAmountInCurrentMonth();
     this.loadIncomeExpenseAmountInCurrentMonth();
     this.noteCreatedSubscription = this.sharedNotesService.currentMessage.subscribe({

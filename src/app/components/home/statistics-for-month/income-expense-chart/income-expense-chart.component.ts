@@ -5,6 +5,7 @@ import {IncomeExpenseStatisticsService} from "../../../../services/income-expens
 import {SharedNotesService} from "../../../../services/shared-notes.service";
 import {IncomeExpenseStatisticsForCategory} from "../../../../models/income-expense-statistics-for-category";
 import {ChartDataParserService} from "../../../../services/chart-data-parser.service";
+import {ConfigurationService} from "../../../../services/configuration.service";
 
 type ChartData = {
   labels: string[],
@@ -28,7 +29,8 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
   constructor(
     private incomeExpenseStatisticsService: IncomeExpenseStatisticsService,
     private sharedNotesService: SharedNotesService,
-    private chartDataParserService: ChartDataParserService
+    private chartDataParserService: ChartDataParserService,
+    private configurationService: ConfigurationService
   ) {
   }
 
@@ -64,24 +66,6 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
       }]
     };
 
-    this.options = {
-      responsive: true,
-      maintainAspectRatio: true,
-      animation: {
-        duration: 0
-      },
-      plugins: {
-        legend: {
-          align: 'start',
-          position: 'top',
-          labels: {
-            font: {
-              family: 'Montserrat',
-              size: 16
-            }
-          }
-        }
-      }
-    }
+    this.options = this.configurationService.getValue("doughnutAndPieChartsOptions");
   }
 }

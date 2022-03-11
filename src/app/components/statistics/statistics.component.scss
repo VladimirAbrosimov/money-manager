@@ -6,9 +6,8 @@
 }
 
 .income-expense-for-all-time-sorted-by-category-charts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-auto-flow: column;
   margin-top: 6rem;
   width: 100%;
 

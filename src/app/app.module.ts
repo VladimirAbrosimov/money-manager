@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {APP_INITIALIZER, LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { registerLocaleData } from '@angular/common';
@@ -29,6 +29,7 @@ import { StatisticsForMonthComponent } from './components/home/statistics-for-mo
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { IncomeExpenseForYearChartComponent } from './components/statistics/income-expense-for-year-chart/income-expense-for-year-chart.component';
 import { IncomeExpenseForAllTimeSortedByCategoryChartComponent } from './components/statistics/income-expense-for-all-time-sorted-by-category-chart/income-expense-for-all-time-sorted-by-category-chart.component';
+import {ConfigurationService, initConfig} from "./services/configuration.service";
 
 registerLocaleData(localeRu, 'ru');
 
@@ -75,6 +76,12 @@ registerLocaleData(localeRu, 'ru');
     {
       provide: LOCALE_ID,
       useValue: 'ru'
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initConfig,
+      multi: true,
+      deps: [ConfigurationService]
     }
   ],
   bootstrap: [AppComponent]
