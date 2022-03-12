@@ -34,7 +34,7 @@ export class IncomeExpenseForAllTimeSortedByCategoryChartComponent implements On
   }
 
   private loadChart(noteType: NoteType): void {
-    this.incomeExpenseStatisticsService.getIncomeExpenseStatisticsInCurrentMonthByTypeSortedByCategory(noteType).subscribe({
+    this.incomeExpenseStatisticsService.getIncomeExpenseStatisticsForAllTimeByTypeSortedByCategory(noteType).subscribe({
       next: (incomeExpenseStatisticsForCategories: IncomeExpenseStatisticsForCategory[]) => {
         const chartData: ChartData = this.chartDataParserService.parseIncomeExpenseStatisticsForCategory(incomeExpenseStatisticsForCategories);
         this.initChart(chartData);

@@ -3,12 +3,12 @@ import {Injectable} from '@angular/core';
 import {User} from '../models/user';
 import {JwtService} from './jwt.service';
 import {map} from 'rxjs/operators';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private readonly serverURL: string = 'http://localhost:8080';
 
   constructor(
     private http: HttpClient,
@@ -28,7 +28,7 @@ export class UserService {
     const body = {username: user.username, password: user.password};
 
     return this.http.post(
-      this.serverURL + '/auth',
+      environment.SERVER_URL + '/auth',
       body,
       {
         headers: {
@@ -53,7 +53,7 @@ export class UserService {
     const body = {username: user.username, password: user.password, passwordConfirm: user.passwordConfirm};
 
     return this.http.post(
-      this.serverURL + '/addUser',
+      environment.SERVER_URL + '/addUser',
       body,
       {
         headers: {
@@ -69,7 +69,7 @@ export class UserService {
       .set('username', username);
 
     return this.http.get(
-      this.serverURL + '/isUsernameUsed',
+      environment.SERVER_URL + '/isUsernameUsed',
       {
         params: params
       }

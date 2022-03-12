@@ -97,9 +97,6 @@ export class NoteCategoriesListComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
-
   private createNoteCategoryItem(noteCategory: NoteCategory): ComponentRef<NoteCategoryItemComponent> {
     const noteCategoryItemComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NoteCategoryItemComponent);
     const noteCategoryItemComponent = this.viewContainerRef.createComponent<NoteCategoryItemComponent>(noteCategoryItemComponentFactory);

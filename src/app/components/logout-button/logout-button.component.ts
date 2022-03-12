@@ -17,10 +17,8 @@ export class LogoutButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loggout() {
+  logout(): void {
     this.userService.logoutUser();
     this.router.navigate(['/login']);
   }
-
-
 }

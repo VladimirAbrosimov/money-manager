@@ -4,12 +4,12 @@ import {NoteCategory} from '../models/note-category';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {NoteType} from '../models/note-type';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteCategoryService {
-  private readonly SERVER_URL: string = 'http://localhost:8080';
 
   constructor(
     private http: HttpClient
@@ -20,7 +20,7 @@ export class NoteCategoryService {
     const body = {type: noteCategory.type, name: noteCategory.name, color: noteCategory.color};
 
     return this.http.post(
-      this.SERVER_URL + '/saveNoteCategory',
+      environment.SERVER_URL + '/saveNoteCategory',
       body,
       {
         responseType: 'text'
@@ -30,16 +30,15 @@ export class NoteCategoryService {
 
   deleteNoteCategory(noteCategory: NoteCategory) {
     const body = {type: noteCategory.type, name: noteCategory.name, color: noteCategory.color};
-    console.log("rgreg")
     return this.http.post(
-      this.SERVER_URL + '/deleteNoteCategory',
+      environment.SERVER_URL + '/deleteNoteCategory',
       body
     );
   }
 
   getAllNoteCategories(): Observable<NoteCategory[]> {
     return this.http.get(
-      this.SERVER_URL + '/getAllNoteCategories',
+      environment.SERVER_URL + '/getAllNoteCategories',
       {
         responseType: 'json',
       }
@@ -64,7 +63,7 @@ export class NoteCategoryService {
 
 
     return this.http.get(
-      this.SERVER_URL + '/getNoteCategoriesByType',
+      environment.SERVER_URL + '/getNoteCategoriesByType',
       {
         responseType: 'json',
         params: params

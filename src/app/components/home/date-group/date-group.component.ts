@@ -63,10 +63,7 @@ export class DateGroupComponent implements OnInit, OnDestroy {
     const noteItemComponent = this.viewContainerRef.createComponent<NoteItemComponent>(noteItemComponentFactory);
 
     if (noteItemComponent) {
-      noteItemComponent.instance.type = note.type;
-      noteItemComponent.instance.category = note.category;
-      noteItemComponent.instance.amount = note.amount;
-      noteItemComponent.instance.commentary = note.commentary;
+      noteItemComponent.instance.note = note;
 
       this.noteItemComponents.push(noteItemComponent);
     }

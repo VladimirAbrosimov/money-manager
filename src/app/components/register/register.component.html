@@ -4,7 +4,7 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div>
         <div class="login-register__form-field">
-          <input class="form-element login-register__form-element" formControlName="username"
+          <input [ngClass]="{'form-element--error': formFields.username.errors && formFields.username.touched}" class="form-element login-register__form-element" formControlName="username"
                  type="text" placeholder="Имя пользователя"/>
           <p
             *ngIf="(formFields.username.errors?.minlength || formFields.username.errors?.maxlength) && formFields.username.touched"

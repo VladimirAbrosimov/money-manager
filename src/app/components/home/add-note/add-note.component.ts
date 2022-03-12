@@ -36,6 +36,7 @@ export class AddNoteComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.noteCategoryService.getNoteCategoriesByType('EXPENSE').subscribe({
       next: (noteCategories: NoteCategory[]) => noteCategories.map((noteCategory: NoteCategory) => {
+        if (noteCategory.name == 'неизвестная категория') return;
         this.categoriesExpense.push(noteCategory.name);
       }),
       complete: () => {
@@ -46,6 +47,7 @@ export class AddNoteComponent implements OnInit, OnDestroy {
 
     this.noteCategoryService.getNoteCategoriesByType('INCOME').subscribe({
       next: (noteCategories: NoteCategory[]) => noteCategories.map((noteCategory: NoteCategory) => {
+        if (noteCategory.name == 'неизвестная категория') return;
         this.categoriesIncome.push(noteCategory.name);
       })
     });
@@ -86,15 +88,17 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     const category = this.formFields.category.value;
     const amount = this.formFields.amount.value;
     const commentary = this.formFields.commentary.value;
+    const date = new Date();
 
     const note: Note = {
       type,
       category,
       amount,
-      commentary
+      commentary,
+      date
     };
 
-    this.noteService.saveNote(type, category, amount, commentary).subscribe({
+    this.noteService.saveNote(type, category, amount, commentary, date).subscribe({
       complete: () => this.sharedNotesService.changeMessage(note)
     });
   }

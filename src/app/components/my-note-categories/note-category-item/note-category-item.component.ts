@@ -10,7 +10,7 @@ import {NoteCategoryService} from "../../../services/note-category.service";
 export class NoteCategoryItemComponent implements OnInit, OnDestroy {
   category: NoteCategory;
 
-  public isRemoved: boolean = false;
+  isRemoved: boolean = false;
 
   constructor(
     private host: ElementRef<HTMLElement>,
@@ -23,7 +23,6 @@ export class NoteCategoryItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if(this.isRemoved === true) {
-      console.log('deleting', this.category.name);
       this.noteCategoryService.deleteNoteCategory(this.category).subscribe();
     }
   }

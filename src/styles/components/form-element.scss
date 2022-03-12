@@ -20,6 +20,14 @@
 
   &--error {
     border-color: var(--color-error);
+
+    &:hover {
+      border-color: var(--color-error);
+    }
+
+    &:focus {
+      border-color: var(--color-error);
+    }
   }
 
 }

@@ -7,12 +7,12 @@ import {IncomeExpenseStatisticsForCategory} from '../models/income-expense-stati
 import {NoteType} from "../models/note-type";
 import {IncomeExpenseStatisticsForType} from "../models/income-expense-statistics-for-type";
 import {IncomeExpenseStatisticsForMonth} from "../models/income-expense-statistics-for-month";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class IncomeExpenseStatisticsService {
-  private readonly SERVER_URL: string = 'http://localhost:8080';
 
   constructor(
     private http: HttpClient
@@ -21,7 +21,7 @@ export class IncomeExpenseStatisticsService {
 
   getTotalAmountInCurrentMonth(): Observable<number> {
     return this.http.get(
-      this.SERVER_URL + '/getTotalAmountInCurrentMonth',
+      environment.SERVER_URL + '/getTotalAmountInCurrentMonth',
       {
         responseType: 'json'
       }
@@ -32,7 +32,7 @@ export class IncomeExpenseStatisticsService {
 
   getIncomeExpenseStatisticsInCurrentMonthSortedByType(): Observable<IncomeExpenseStatisticsForType[]> {
     return this.http.get(
-      this.SERVER_URL + '/getIncomeExpenseStatisticsInCurrentMonthSortedByType',
+      environment.SERVER_URL + '/getIncomeExpenseStatisticsInCurrentMonthSortedByType',
       {
         responseType: 'json'
       }
@@ -54,7 +54,7 @@ export class IncomeExpenseStatisticsService {
       .set('type', noteType);
 
     return this.http.get(
-      this.SERVER_URL + '/getIncomeExpenseStatisticsInCurrentMonthByTypeSortedByCategory',
+      environment.SERVER_URL + '/getIncomeExpenseStatisticsInCurrentMonthByTypeSortedByCategory',
       {
         responseType: 'json',
         params: params
@@ -81,7 +81,7 @@ export class IncomeExpenseStatisticsService {
       .set('type', noteType);
 
     return this.http.get(
-      this.SERVER_URL + '/getIncomeExpenseStatisticsForAllTimeByTypeSortedByCategory',
+      environment.SERVER_URL + '/getIncomeExpenseStatisticsForAllTimeByTypeSortedByCategory',
       {
         responseType: 'json',
         params: params
@@ -106,7 +106,7 @@ export class IncomeExpenseStatisticsService {
 
   getIncomeExpenseStatisticsForCurrentYearSortedByMonth(): Observable<IncomeExpenseStatisticsForMonth[]> {
     return this.http.get(
-      this.SERVER_URL + '/getIncomeExpenseStatisticsForCurrentYearSortedByMonth',
+      environment.SERVER_URL + '/getIncomeExpenseStatisticsForCurrentYearSortedByMonth',
       {
         responseType: 'json'
       }
