@@ -28,11 +28,14 @@ export class NoteCategoryService {
     );
   }
 
-  deleteNoteCategory(noteCategory: NoteCategory) {
-    const body = {type: noteCategory.type, name: noteCategory.name, color: noteCategory.color};
-    return this.http.post(
+  deleteNoteCategory(noteCategoryId: number) {
+    const params = new HttpParams()
+      .set('id', noteCategoryId);
+    return this.http.get(
       environment.SERVER_URL + '/deleteNoteCategory',
-      body
+      {
+        params
+      }
     );
   }
 
@@ -43,17 +46,7 @@ export class NoteCategoryService {
         responseType: 'json',
       }
     ).pipe(map((noteCategories: any) => {
-      return noteCategories.map((noteCategory: any) => {
-        const type = noteCategory['type'];
-        const name = noteCategory['name'];
-        const color = noteCategory['color'];
-
-        return {
-          type,
-          name,
-          color
-        }
-      });
+      return noteCategories.map(NoteCategoryService.parseNoteCategoryData);
     }));
   }
 
@@ -66,20 +59,25 @@ export class NoteCategoryService {
       environment.SERVER_URL + '/getNoteCategoriesByType',
       {
         responseType: 'json',
-        params: params
+        params
       }
     ).pipe(map((noteCategories: any) => {
-      return noteCategories.map((noteCategory: any) => {
-        const type = noteCategory['type'];
-        const name = noteCategory['name'];
-        const color = noteCategory['color'];
-
-        return {
-          type,
-          name,
-          color
-        }
-      });
+      return noteCategories.map(NoteCategoryService.parseNoteCategoryData);
     }));
+  }
+
+
+  private static parseNoteCategoryData(noteCategory: any): NoteCategory {
+    const type = noteCategory.type;
+    const name = noteCategory.name;
+    const color = noteCategory.color;
+    const id = noteCategory.id;
+
+    return {
+      type,
+      name,
+      color,
+      id
+    }
   }
 }

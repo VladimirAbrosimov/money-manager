@@ -6,6 +6,7 @@ export interface Note {
   category: NoteCategory,
   amount: number,
   commentary?: string,
-  date?: Date
+  date?: Date,
+  id?: number
 }
 

@@ -20,8 +20,8 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
+  @HostListener('window:resize')
+  onResize(): void {
     this.isScreenWidthTooSmall = window.innerWidth < this.smallScreenWidth;
   }
 

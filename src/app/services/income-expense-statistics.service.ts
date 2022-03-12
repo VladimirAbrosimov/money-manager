@@ -37,15 +37,7 @@ export class IncomeExpenseStatisticsService {
         responseType: 'json'
       }
     ).pipe(map((statisticsList: any) => {
-      return statisticsList.map((statistics: any) => {
-        const type: NoteType = statistics.type;
-        const amount: number = statistics.amount;
-
-        return {
-          type,
-          amount
-        }
-      });
+      return statisticsList.map(IncomeExpenseStatisticsService.parseIncomeExpenseStatisticsForTypeData);
     }));
   }
 
@@ -60,19 +52,7 @@ export class IncomeExpenseStatisticsService {
         params: params
       }
     ).pipe(map((statisticsList: any) => {
-      return statisticsList.map((statistics: any) => {
-        const category: NoteCategory = {
-          type: statistics.category.type,
-          name: statistics.category.name,
-          color: statistics.category.color
-        }
-        const amount: number = statistics.amount;
-
-        return {
-          category,
-          amount
-        }
-      });
+      return statisticsList.map(IncomeExpenseStatisticsService.parseIncomeExpenseStatisticsForCategoryData);
     }));
   }
 
@@ -87,22 +67,9 @@ export class IncomeExpenseStatisticsService {
         params: params
       }
     ).pipe(map((statisticsList: any) => {
-      return statisticsList.map((statistics: any) => {
-        const category: NoteCategory = {
-          type: statistics.category.type,
-          name: statistics.category.name,
-          color: statistics.category.color
-        }
-        const amount: number = statistics.amount;
-
-        return {
-          category,
-          amount
-        }
-      });
+      return statisticsList.map(IncomeExpenseStatisticsService.parseIncomeExpenseStatisticsForCategoryData);
     }));
   }
-
 
   getIncomeExpenseStatisticsForCurrentYearSortedByMonth(): Observable<IncomeExpenseStatisticsForMonth[]> {
     return this.http.get(
@@ -111,20 +78,46 @@ export class IncomeExpenseStatisticsService {
         responseType: 'json'
       }
     ).pipe(map((statisticsList: any) => {
-      return statisticsList.map((statistics: any) => {
-        const yearMonth: string = statistics.yearMonth;
-        const expenseAmount: number = statistics.expenseAmount;
-        const incomeAmount: number = statistics.incomeAmount;
-        const totalAmount: number = statistics.totalAmount;
-
-        return {
-          yearMonth,
-          expenseAmount,
-          incomeAmount,
-          totalAmount
-        }
-      });
+      return statisticsList.map(IncomeExpenseStatisticsService.parseIncomeExpenseStatisticsForMonthData);
     }));
   }
 
+
+  private static parseIncomeExpenseStatisticsForTypeData(incomeExpenseStatisticsForType: any): IncomeExpenseStatisticsForType {
+    const type: NoteType = incomeExpenseStatisticsForType.type;
+    const amount: number = incomeExpenseStatisticsForType.amount;
+
+    return {
+      type,
+      amount
+    }
+  }
+
+  private static parseIncomeExpenseStatisticsForCategoryData(incomeExpenseStatisticsForCategory: any): IncomeExpenseStatisticsForCategory {
+    const category: NoteCategory = {
+      type: incomeExpenseStatisticsForCategory.category.type,
+      name: incomeExpenseStatisticsForCategory.category.name,
+      color: incomeExpenseStatisticsForCategory.category.color
+    }
+    const amount: number = incomeExpenseStatisticsForCategory.amount;
+
+    return {
+      category,
+      amount
+    }
+  }
+
+  private static parseIncomeExpenseStatisticsForMonthData(incomeExpenseStatisticsForMonth: any): IncomeExpenseStatisticsForMonth {
+    const yearMonth: string = incomeExpenseStatisticsForMonth.yearMonth;
+    const expenseAmount: number = incomeExpenseStatisticsForMonth.expenseAmount;
+    const incomeAmount: number = incomeExpenseStatisticsForMonth.incomeAmount;
+    const totalAmount: number = incomeExpenseStatisticsForMonth.totalAmount;
+
+    return {
+      yearMonth,
+      expenseAmount,
+      incomeAmount,
+      totalAmount
+    }
+  }
 }

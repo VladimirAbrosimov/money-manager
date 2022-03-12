@@ -2,8 +2,6 @@
   align-items: center;
   display: flex;
   font-size: var(--font-size-large);
-  margin: 0.8em 0;
-
 
   &__item {
     margin-right: 1.1em;
@@ -25,8 +23,4 @@
 
 .note--EXPENSE .note__amount::before {
   content: '-';
-}
-
-.note__date {
-  font-size: 0.8em;
 }

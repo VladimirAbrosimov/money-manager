@@ -23,7 +23,7 @@ export class NoteCategoryItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if(this.isRemoved === true) {
-      this.noteCategoryService.deleteNoteCategory(this.category).subscribe();
+      this.noteCategoryService.deleteNoteCategory(this.category.id).subscribe();
     }
   }
 

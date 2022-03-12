@@ -17,17 +17,29 @@ export class NoteService {
   ) {
   }
 
-  saveNote(_type: string, _category: string, _amount: number, _commentary: string, _date) {
+  saveNote(_type: NoteType, categoryId: number, _amount: number, _commentary: string, _date: Date) {
     const body = {type: _type, amount: _amount, commentary: _commentary, date: _date};
+
     const params = new HttpParams()
-      .set('noteCategoryName', _category);
+      .set('noteCategoryId', categoryId);
 
     return this.http.post(
-      environment.SERVER_URL + '/addNote',
+      environment.SERVER_URL + '/saveNote',
       body,
       {
         responseType: 'text',
-        params: params
+        params
+      }
+    );
+  }
+
+  deleteNote(noteId: number) {
+    const params = new HttpParams()
+      .set('id', noteId);
+    return this.http.get(
+      environment.SERVER_URL + '/deleteNote',
+      {
+        params
       }
     );
   }
@@ -39,25 +51,7 @@ export class NoteService {
         responseType: 'json'
       }
     ).pipe(map((notes: any) => {
-      return notes.map((note: any) => {
-        const type: NoteType = note.type;
-        const category: NoteCategory = {
-          type: note.category.type,
-          name: note.category.name,
-          color: note.category.color
-        }
-        const amount: number = note.amount;
-        const date: Date = note.date;
-        const commentary: string = note.commentary;
-
-        return {
-          type,
-          category,
-          amount,
-          commentary,
-          date
-        }
-      });
+      return notes.map(NoteService.parseNoteData);
     }));
   }
 
@@ -67,24 +61,29 @@ export class NoteService {
       {
         responseType: 'json'
       }
-    ).pipe(map((note: any) => {
-      const type: NoteType = note.type;
-      const category: NoteCategory = {
-        type: note.category.type,
-        name: note.category.name,
-        color: note.category.color
-      }
-      const amount: number = note.amount;
-      const date: Date = note.date;
-      const commentary: string = note.commentary;
+    ).pipe(map(NoteService.parseNoteData));
+  }
 
-      return {
-        type,
-        category,
-        amount,
-        commentary,
-        date
-      }
-    }));
+
+  private static parseNoteData(note: any): Note {
+    const type: NoteType = note.type;
+    const category: NoteCategory = {
+      type: note.category.type,
+      name: note.category.name,
+      color: note.category.color
+    }
+    const amount: number = note.amount;
+    const date: Date = note.date;
+    const commentary: string = note.commentary;
+    const id: number = note.id;
+
+    return {
+      type,
+      category,
+      amount,
+      commentary,
+      date,
+      id
+    }
   }
 }

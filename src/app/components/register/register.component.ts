@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -8,9 +8,9 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import {Router} from '@angular/router';
+import {User} from 'src/app/models/user';
+import {UserService} from 'src/app/services/user.service';
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -25,17 +25,22 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService : UserService,
+    private userService: UserService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.submitted = false;
-    this.registerForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25)], [this.checkUsernameUsed()]],
-      password: ['', [Validators.required]],
-      passwordConfirm: ['', [Validators.required]]
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25)], [this.checkUsernameUsed()]],
+        password: ['', [Validators.required]],
+        passwordConfirm: ['', [Validators.required]]
+      },
+      {
+        updateOn: 'blur'
+      });
   }
 
   get formFields() {
@@ -74,7 +79,7 @@ export class RegisterComponent implements OnInit {
       control.value ===
       (control.parent?.controls as any)[matchTo].value
         ? null
-        : { matching: true };
+        : {matching: true};
     };
   }
 

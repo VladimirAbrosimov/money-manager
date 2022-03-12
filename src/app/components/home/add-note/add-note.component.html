@@ -5,22 +5,22 @@
   </div>
   <form class="add-note__form" [formGroup]="addNoteForm" (ngSubmit)="onSubmit()">
     <div class="add-note__type-amount">
-      <select class="form-element add-note__type add-note__form-element" formControlName="type"
-              (ngModelChange)="onChangeType()">
+      <select [ngClass]="{'form-element--error': submitted && formFields.type.errors}" class="form-element add-note__type add-note__form-element" formControlName="type"
+              (ngModelChange)="onChangeNoteType()">
         <option *ngFor="let i of types" [ngValue]="i">
           {{i.name}}
         </option>
       </select>
-      <input class="form-element add-note__amount add-note__form-element" formControlName="amount" type="number"
+      <input [ngClass]="{'form-element--error': submitted && formFields.amount.errors}" class="form-element add-note__amount add-note__form-element" formControlName="amount" type="number"
              placeholder="сумма">
     </div>
-    <select class="form-element add-note__category add-note__form-element" formControlName="category">
+    <select [ngClass]="{'form-element--error': submitted && formFields.category.errors}" class="form-element add-note__category add-note__form-element" formControlName="category">
       <option *ngFor="let i of categories" [ngValue]="i">
-        {{i}}
+        {{i.value}}
       </option>
     </select>
-    <input class="form-element add-note__commentary add-note__form-element" formControlName="commentary" type="text"
+    <input [ngClass]="{'form-element--error': submitted && formFields.commentary.errors}" class="form-element add-note__commentary add-note__form-element" formControlName="commentary" type="text"
            placeholder="комментарий">
-    <button class="button add-note__button" [disabled]="addNoteForm.invalid" type="submit">Добавить</button>
+    <button class="button add-note__button" type="submit">Добавить</button>
   </form>
 </div>

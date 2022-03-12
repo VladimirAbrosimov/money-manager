@@ -1,6 +1,10 @@
-<div class="note note--{{note.type}}">
-    <i class="note__icon icon-amount-{{note.type}}"></i>
-    <span class="note__item note__amount note__amount--{{note.type}}">{{note.amount | currency: currency:'symbol': '1.0-0'}}</span>
-    <span class="note__item note-category note-category--{{note.category.name}}">{{note.category.name}}</span>
-    <span class="note__item note__commentary">{{note.commentary}}</span>
+<div [ngClass]="{'removable-item--pre-removed':isRemoved}" class="removable-item note note--{{note.type}}">
+  <i class="note__icon icon-amount-{{note.type}}"></i>
+  <span class="note__item note__amount note__amount--{{note.type}}">{{note.amount | currency: currency:'symbol': '1.0-0'}}</span>
+  <span class="note__item note-category note-category--{{note.category.name}}">{{note.category.name}}</span>
+  <span class="note__item note__commentary">{{note.commentary}}</span>
+  <div class="remove-restore-btn">
+    <i (click)="removeNote()" class="remove-restore-btn__icon remove-restore-btn__remove icon-cross"></i>
+    <i (click)="restoreNote()" class="remove-restore-btn__icon remove-restore-btn__restore icon-plus"></i>
+  </div>
 </div>

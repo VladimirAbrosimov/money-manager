@@ -5,7 +5,12 @@ import { NoteCategoryService } from 'src/app/services/note-category.service';
 import { NoteService } from 'src/app/services/note.service';
 import { NoteCategory } from 'src/app/models/note-category';
 import { SharedNotesService } from 'src/app/services/shared-notes.service';
+import {NoteType} from "../../../models/note-type";
 
+type categoryField = {
+  value: string,
+  id: number
+}
 
 @Component({
   selector: 'app-add-note',
@@ -15,10 +20,11 @@ import { SharedNotesService } from 'src/app/services/shared-notes.service';
 export class AddNoteComponent implements OnInit, OnDestroy {
   isFormExpanded: boolean = true;
   addNoteForm: FormGroup;
+  submitted = false;
 
-  private categoriesExpense: string[] = [];
-  private categoriesIncome: string[] = [];
-  categories: string[];
+  private categoriesExpense: categoryField[] = [];
+  private categoriesIncome: categoryField[] = [];
+  categories: categoryField[];
 
   types = [
     {value: "EXPENSE", name: "расходы"},
@@ -37,7 +43,10 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     this.noteCategoryService.getNoteCategoriesByType('EXPENSE').subscribe({
       next: (noteCategories: NoteCategory[]) => noteCategories.map((noteCategory: NoteCategory) => {
         if (noteCategory.name == 'неизвестная категория') return;
-        this.categoriesExpense.push(noteCategory.name);
+        this.categoriesExpense.push({
+          value: noteCategory.name,
+          id: noteCategory.id
+        });
       }),
       complete: () => {
         this.categories = this.categoriesExpense;
@@ -48,7 +57,10 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     this.noteCategoryService.getNoteCategoriesByType('INCOME').subscribe({
       next: (noteCategories: NoteCategory[]) => noteCategories.map((noteCategory: NoteCategory) => {
         if (noteCategory.name == 'неизвестная категория') return;
-        this.categoriesIncome.push(noteCategory.name);
+        this.categoriesIncome.push({
+          value: noteCategory.name,
+          id: noteCategory.id
+        });
       })
     });
 
@@ -73,7 +85,7 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     this.isFormExpanded = !this.isFormExpanded;
   }
 
-  public onChangeType(): void {
+  public onChangeNoteType(): void {
     const type = this.formFields.type.value;
     if (type.value == "EXPENSE") {
       this.categories = this.categoriesExpense;
@@ -84,21 +96,27 @@ export class AddNoteComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(): void {
-    const type = this.formFields.type.value.value;
-    const category = this.formFields.category.value;
-    const amount = this.formFields.amount.value;
-    const commentary = this.formFields.commentary.value;
-    const date = new Date();
+    this.submitted = true;
+
+    if(this.addNoteForm.invalid) {
+      return;
+    }
+
+    const type: NoteType = this.formFields.type.value.value;
+    const categoryId: number = this.formFields.category.value.id;
+    const amount: number = this.formFields.amount.value;
+    const commentary: string = this.formFields.commentary.value;
+    const date: Date = new Date();
 
     const note: Note = {
       type,
-      category,
+      category: null,
       amount,
       commentary,
       date
     };
 
-    this.noteService.saveNote(type, category, amount, commentary, date).subscribe({
+    this.noteService.saveNote(type, categoryId, amount, commentary, date).subscribe({
       complete: () => this.sharedNotesService.changeMessage(note)
     });
   }
