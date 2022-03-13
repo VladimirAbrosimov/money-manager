@@ -1,7 +1,7 @@
 .login-register {
-  background-color: #fff;
+  background-color: var(--background-color-block);
   border-radius: var(--border-radius-large);
-  box-shadow: 0 0.4rem 2.4rem rgb(0 0 0 / 8%);
+  box-shadow: 0 0.4rem 2.4rem var(--box-shadow-color-block);
   padding: 4.9rem 9.4rem;
 
 

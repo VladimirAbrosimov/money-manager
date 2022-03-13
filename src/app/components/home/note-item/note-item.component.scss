@@ -3,17 +3,17 @@
   display: flex;
   font-size: var(--font-size-large);
 
-  &__item {
+  &__amount, &__category {
     margin-right: 1.1em;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
   &__icon {
     font-size: 1.2em;
     margin-right: 0.4em;
+  }
+
+  &__commentary {
+    font-size: var(--font-size-medium);
   }
 }
 

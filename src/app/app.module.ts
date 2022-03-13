@@ -30,6 +30,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { IncomeExpenseForYearChartComponent } from './components/statistics/income-expense-for-year-chart/income-expense-for-year-chart.component';
 import { IncomeExpenseForAllTimeSortedByCategoryChartComponent } from './components/statistics/income-expense-for-all-time-sorted-by-category-chart/income-expense-for-all-time-sorted-by-category-chart.component';
 import {ConfigurationService, initConfig} from "./services/configuration.service";
+import { SettingsComponent } from './components/settings/settings.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -55,6 +56,7 @@ registerLocaleData(localeRu, 'ru');
     StatisticsComponent,
     IncomeExpenseForYearChartComponent,
     IncomeExpenseForAllTimeSortedByCategoryChartComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

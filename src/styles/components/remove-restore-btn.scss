@@ -1,14 +1,16 @@
+$icon-font-size: 1.2em;
+$icon-right: 0.3em;
+
 .remove-restore-btn {
   display: none;
-  font-size: 1.4em;
   position: absolute;
-  right: 0.3em;
+  right: $icon-right;
   top: 50%;
   transform: translateY(-50%);
 
   &__icon {
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: $icon-font-size;
   }
 
   &__restore {
@@ -18,11 +20,11 @@
 
 .removable-item {
   border-radius: var(--border-radius-small);
-  padding: 0.5em 0.3em;
+  padding: 0.5em $icon-font-size+$icon-right+0.2em 0.5em 0.3em;
   position: relative;
 
   &:hover {
-    background-color: var(--color-gray-2);
+    background-color: var(--background-color-removable-item-hover);
 
     .remove-restore-btn {
       display: block;

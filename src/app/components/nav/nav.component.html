@@ -2,6 +2,9 @@
   <nav class="nav__inner">
     <a routerLink="/home" class="link nav__logo">MoneyManager</a>
     <span class="nav__username">{{username}}</span>
+    <a routerLink="/settings" class="nav__settings">
+      <i class="icon-settings"></i>
+    </a>
     <div class="navigation">
       <i (click)="toggleActive()" class="navigation__hamburger icon-view-list"></i>
       <div *ngIf="isActive || !isScreenWidthTooSmall" class="navigation__links">

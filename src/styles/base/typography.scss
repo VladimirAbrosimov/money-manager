@@ -34,12 +34,12 @@
 
 .icon-amount-EXPENSE:before {
   content: "\e905";
-  color: #800f11;
+  color: var(--color-icon-expense);
 }
 
 .icon-amount-INCOME:before {
   content: "\e904";
-  color: #10800f;
+  color: var(--color-icon-income);
 }
 
 .icon-cross-outline:before {

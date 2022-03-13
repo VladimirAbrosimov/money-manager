@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedOutGuard } from './guards/logged-out.guard';
 import {StatisticsComponent} from "./components/statistics/statistics.component";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'statistics',
     component: StatisticsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard]
   },
   { path: '**', component: PageNotFoundComponent }

@@ -7,7 +7,7 @@ $border-bottom-width: 0.2rem;
 
   &__inner {
     align-items: center;
-    background-color: #fff;
+    background-color: var(--background-color-nav);
     border-bottom: $border-bottom-width solid var(--border-color-nav);
     color: var(--text-color-primary);
     display: flex;
@@ -29,11 +29,21 @@ $border-bottom-width: 0.2rem;
 
   &__username {
     font-size: var(--font-size-large);
-    margin-right: auto;
+    margin-right: 0.7em;
+  }
+
+  &__settings {
+    text-decoration: none;
+
+    i {
+      font-size: 1.4em;
+    }
   }
 }
 
 .navigation {
+  margin-left: auto;
+
   &__hamburger {
     cursor: pointer;
     display: none;
@@ -62,14 +72,14 @@ $border-bottom-width: 0.2rem;
     }
 
     &__links {
-      background-color: #fff;
+      background-color: var(--background-color-block);
       border-radius: 0 0 0 var(--border-radius-large);
+      box-shadow: 0 0.4rem 2.4rem var(--box-shadow-color-block);
       flex-direction: column;
       padding: 2rem;
       position: absolute;
       top: $nav-height + $border-bottom-width;
       right: 0;
-      box-shadow: 0 0.4rem 2.4rem rgba(0, 0, 0, 0.08);
       white-space:nowrap;
     }
 
