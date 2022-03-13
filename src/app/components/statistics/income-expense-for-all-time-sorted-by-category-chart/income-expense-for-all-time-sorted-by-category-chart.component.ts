@@ -50,7 +50,8 @@ export class IncomeExpenseForAllTimeSortedByCategoryChartComponent implements On
       datasets: [{
         data: chartData.data,
         backgroundColor: chartData.colors,
-        hoverBackgroundColor: chartData.colors
+        hoverBackgroundColor: chartData.colors,
+        borderWidth: 0,
       }]
     };
 

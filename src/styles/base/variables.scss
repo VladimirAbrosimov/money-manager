@@ -7,6 +7,7 @@
   --color-white-3: #ededed;
   --color-white-4: #d7d7d7;
   --color-white-5: #dedede;
+  --color-white-6: #dfdfdf;
   --color-gray-1: #8d8d8d;
   --color-black-2: #333;
   --color-red-1: #cc0000;
@@ -25,7 +26,7 @@
   --color-gray-3: #383838;
   --color-gray-4: #646464;
   --color-gray-5: #3a3a3a;
-  --color-white-6: #efeff1;
+  --color-white-7: #efeff1;
   --color-orange-1: #f99c3c;
   --color-orange-2: #da8326;
   --color-red-3: #e53131;
@@ -50,7 +51,7 @@
   --background-color-page: var(--color-white-2);
   --background-color-block: var(--color-white-1);
   --background-color-item-hover: var(--color-white-3);
-  //--background-color-item-hover: var(--color-white-3);
+  --background-color-item-selected: var(--color-white-6);
   --box-shadow-color-block: rgba(0, 0, 0, 0.08);
   --text-color-primary: var(--color-black-2);
 
@@ -87,7 +88,7 @@
   --background-color-item-hover: var(--color-gray-2);
   --background-color-item-selected: var(--color-gray-3);
   --box-shadow-color-block: rgba(255, 255, 255, 0.00);
-  --text-color-primary: var(--color-white-6);
+  --text-color-primary: var(--color-white-7);
 
   // nav
   --background-color-nav: var(--color-black-4);

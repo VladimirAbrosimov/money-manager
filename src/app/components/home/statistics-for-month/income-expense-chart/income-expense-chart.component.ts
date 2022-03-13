@@ -62,7 +62,8 @@ export class IncomeExpenseChartComponent implements OnInit, OnDestroy {
       datasets: [{
         data: chartData.data,
         backgroundColor: chartData.colors,
-        hoverBackgroundColor: chartData.colors
+        hoverBackgroundColor: chartData.colors,
+        borderWidth: 0,
       }]
     };
 
