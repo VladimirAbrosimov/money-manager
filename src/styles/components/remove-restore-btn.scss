@@ -24,7 +24,7 @@ $icon-right: 0.3em;
   position: relative;
 
   &:hover {
-    background-color: var(--background-color-removable-item-hover);
+    background-color: var(--background-color-item-hover);
 
     .remove-restore-btn {
       display: block;

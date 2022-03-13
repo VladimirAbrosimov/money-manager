@@ -1,9 +1,10 @@
-.form-element {
+.form-element, .form-element--mat .mat-form-field-flex  {
   background-color: var(--background-color-form-field-default);
   border: 1px solid var(--border-color-form-field-default);
   border-radius: var(--border-radius-small);
   color: var(--text-color-primary);
   display: block;
+  font-family: var(--font-family-primary);
   font-size: var(--font-size-medium);
   height: 4.2rem;
   padding: 0 0.3em;
@@ -30,4 +31,51 @@
     }
   }
 
+}
+
+.form-element--mat {
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0;
+
+    .mat-form-field-flex {
+      display: flex;
+      align-items: center;
+    }
+
+    .mat-form-field-infix {
+      padding: 0;
+      border: none;
+    }
+  }
+
+  .mat-select-value-text, .mat-select-arrow, &.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color: var(--text-color-primary);
+  }
+}
+
+
+.mat-option {
+  padding: 0 0.8em !important;
+}
+
+.mat-option, .mat-select {
+  font-family: var(--font-family-primary) !important;
+  color: var(--text-color-primary) !important;
+}
+
+.mat-option:hover:not(.mat-option-disabled):not(.mat-selected), .mat-option:focus:not(.mat-option-disabled) {
+  background-color: var(--background-color-item-hover) !important;
+}
+
+.mat-option.mat-selected {
+  background-color: var(--background-color-item-selected) !important;
+  color: var(--color-selected) !important;
+}
+
+.mat-select-panel {
+  background-color: var(--background-color-block);
 }

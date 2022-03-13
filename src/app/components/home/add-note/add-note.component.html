@@ -5,20 +5,27 @@
   </div>
   <form class="add-note__form" [formGroup]="addNoteForm" (ngSubmit)="onSubmit()">
     <div class="add-note__type-amount">
-      <select [ngClass]="{'form-element--error': submitted && formFields.type.errors}" class="form-element add-note__type add-note__form-element" formControlName="type"
-              (ngModelChange)="onChangeNoteType()">
-        <option *ngFor="let i of types" [ngValue]="i">
-          {{i.name}}
-        </option>
-      </select>
+      <mat-form-field [ngClass]="{'form-element--error': submitted && formFields.type.errors}" class="form-element--mat add-note__type add-note__form-element">
+        <mat-select formControlName="type" (ngModelChange)="onChangeNoteType()">
+          <mat-option *ngFor="let i of types" [value]="i">
+            <span class="note-type">
+              <i *ngIf="i.value == 'INCOME'" class="icon-amount-INCOME"></i>
+              <i *ngIf="i.value == 'EXPENSE'" class="icon-amount-EXPENSE"></i>
+              {{i.name}}
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <input [ngClass]="{'form-element--error': submitted && formFields.amount.errors}" class="form-element add-note__amount add-note__form-element" formControlName="amount" type="number"
              placeholder="сумма">
     </div>
-    <select [ngClass]="{'form-element--error': submitted && formFields.category.errors}" class="form-element add-note__category add-note__form-element" formControlName="category">
-      <option *ngFor="let i of categories" [ngValue]="i">
-        {{i.value}}
-      </option>
-    </select>
+    <mat-form-field [ngClass]="{'form-element--error': submitted && formFields.category.errors}" class="form-element--mat add-note__category add-note__form-element">
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let i of categories" [value]="i">
+          <span class="note-category add-note__category-option" style="--category-color: {{i.color}}">{{i.name}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <input [ngClass]="{'form-element--error': submitted && formFields.commentary.errors}" class="form-element add-note__commentary add-note__form-element" formControlName="commentary" type="text"
            placeholder="комментарий">
     <button class="button add-note__button" type="submit">Добавить</button>

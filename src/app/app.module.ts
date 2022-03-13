@@ -31,6 +31,11 @@ import { IncomeExpenseForYearChartComponent } from './components/statistics/inco
 import { IncomeExpenseForAllTimeSortedByCategoryChartComponent } from './components/statistics/income-expense-for-all-time-sorted-by-category-chart/income-expense-for-all-time-sorted-by-category-chart.component';
 import {ConfigurationService, initConfig} from "./services/configuration.service";
 import { SettingsComponent } from './components/settings/settings.component';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 registerLocaleData(localeRu, 'ru');
 
@@ -64,6 +69,10 @@ registerLocaleData(localeRu, 'ru');
     HttpClientModule,
     ReactiveFormsModule,
     ChartModule,
+    NoopAnimationsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
   ],
   exports: [
     FormsModule,

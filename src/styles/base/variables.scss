@@ -42,22 +42,25 @@
   --font-size-extra-extra-large: 2.0rem;
   --font-size-huge: 2.6rem;
 
+  --font-family-primary: 'Montserrat', sans-serif;
   --padding-page: 3rem 4rem;
   --min-width-page: 480px;
 
   // base
   --background-color-page: var(--color-white-2);
-  --background-color-block: #fff;
+  --background-color-block: var(--color-white-1);
+  --background-color-item-hover: var(--color-white-3);
+  //--background-color-item-hover: var(--color-white-3);
   --box-shadow-color-block: rgba(0, 0, 0, 0.08);
   --text-color-primary: var(--color-black-2);
 
   // nav
-  --background-color-nav: #fff;
+  --background-color-nav: var(--color-white-1);
   --border-color-nav: var(--color-white-5);
 
   // form-field
   --background-color-form-field-default: var(--color-white-3);
-  --background-color-form-field-focus: #fff;
+  --background-color-form-field-focus: var(--color-white-1);
   --border-color-form-field-default: var(--color-white-4);
   --border-color-form-field-hover: var(--color-gray-1);
   --border-color-form-field-focus: var(--color-blue-2);
@@ -67,20 +70,22 @@
   --text-color-button-default: var(--color-black-2);
   --background-color-button-register: var(--color-green-1);
   --background-color-button-login: var(--color-blue-2);
-  --text-color-button-login-register: #fff;
+  --text-color-button-login-register: var(--color-white-1);
 
   // other elements
   --color-error: var(--color-red-1);
+  --color-selected: var(--color-blue-3);
   --color-icon-expense: var(--color-red-2);
   --color-icon-income: var(--color-green-2);
   --text-color-note-type: var(--color-blue-3);
-  --background-color-removable-item-hover: var(--color-white-3);
 }
 
 .theme-dark {
   // base
   --background-color-page: var(--color-black-3);
   --background-color-block: var(--color-black-4);
+  --background-color-item-hover: var(--color-gray-2);
+  --background-color-item-selected: var(--color-gray-3);
   --box-shadow-color-block: rgba(255, 255, 255, 0.00);
   --text-color-primary: var(--color-white-6);
 
@@ -96,8 +101,8 @@
   --border-color-form-field-focus: var(--color-orange-2);
 
   // other elements
+  --color-selected: var(--color-orange-1);
   --color-icon-expense: var(--color-red-3);
   --color-icon-income: var(--color-green-3);
   --text-color-note-type: var(--color-orange-1);
-  --background-color-removable-item-hover: var(--color-gray-2);
 }

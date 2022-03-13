@@ -7,11 +7,6 @@ import { NoteCategory } from 'src/app/models/note-category';
 import { SharedNotesService } from 'src/app/services/shared-notes.service';
 import {NoteType} from "../../../models/note-type";
 
-type categoryField = {
-  value: string,
-  id: number
-}
-
 @Component({
   selector: 'app-add-note',
   templateUrl: './add-note.component.html',
@@ -22,9 +17,9 @@ export class AddNoteComponent implements OnInit, OnDestroy {
   addNoteForm: FormGroup;
   submitted = false;
 
-  private categoriesExpense: categoryField[] = [];
-  private categoriesIncome: categoryField[] = [];
-  categories: categoryField[];
+  private categoriesExpense: NoteCategory[] = [];
+  private categoriesIncome: NoteCategory[] = [];
+  categories: NoteCategory[];
 
   types = [
     {value: "EXPENSE", name: "расходы"},
@@ -43,10 +38,7 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     this.noteCategoryService.getNoteCategoriesByType('EXPENSE').subscribe({
       next: (noteCategories: NoteCategory[]) => noteCategories.map((noteCategory: NoteCategory) => {
         if (noteCategory.name == 'неизвестная категория') return;
-        this.categoriesExpense.push({
-          value: noteCategory.name,
-          id: noteCategory.id
-        });
+        this.categoriesExpense.push(noteCategory);
       }),
       complete: () => {
         this.categories = this.categoriesExpense;
@@ -57,10 +49,7 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     this.noteCategoryService.getNoteCategoriesByType('INCOME').subscribe({
       next: (noteCategories: NoteCategory[]) => noteCategories.map((noteCategory: NoteCategory) => {
         if (noteCategory.name == 'неизвестная категория') return;
-        this.categoriesIncome.push({
-          value: noteCategory.name,
-          id: noteCategory.id
-        });
+        this.categoriesIncome.push(noteCategory);
       })
     });
 
