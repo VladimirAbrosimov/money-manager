@@ -6,7 +6,7 @@ The application can be run locally or in a docker container. To run you need to 
 ## Quick Start
 
 ### Run Docker
-Pull image from Docker Hub:
+Pull money-manager-frontend image from Docker Hub:
 ```
 docker pull vabrosimov/money-manager-frontend:latest
 ```
@@ -14,7 +14,7 @@ When ready, run it:
 ```
 docker run -d -p 8081:80 vabrosimov/money-manager-frontend:latest
 ```
-Application will run by default on port `8081`
+Money Manager Frontend will run by default on port `8081`
 
 ![Screenshot_3](https://user-images.githubusercontent.com/30374265/157990055-2b39559e-3f8c-4bd0-bfe0-9a35ee3aa7e8.png)
 ![Screenshot_4](https://user-images.githubusercontent.com/30374265/157990062-2df9085e-5846-4084-bf89-c7b1ce721800.png)
