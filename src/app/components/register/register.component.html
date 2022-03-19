@@ -4,28 +4,43 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div>
         <div class="login-register__form-field">
-          <input [ngClass]="{'form-element--error': formFields.username.errors && formFields.username.touched}" class="form-element login-register__form-element" formControlName="username"
+          <input [ngClass]="{'form-element--error': submitted && formFields.username.errors }"
+                 class="form-element login-register__form-element" formControlName="username"
                  type="text" placeholder="Имя пользователя"/>
           <p
-            *ngIf="(formFields.username.errors?.minlength || formFields.username.errors?.maxlength) && formFields.username.touched"
-            class="form-error-message">*Имя пользователя должно содержать от 4 до 25
-            символов.</p>
-          <p *ngIf="formFields.username.errors?.usernameUsed && formFields.username.touched"
-             class="form-error-message">*Пользователь с таким именем уже
-            существует.</p>
+            *ngIf="submitted && formFields.username.errors?.required"
+            class="form-error-message">*Введите имя пользователя
+          </p>
+          <p
+            *ngIf="submitted && (formFields.username.errors?.minlength || formFields.username.errors?.maxlength)"
+            class="form-error-message">*Имя пользователя должно содержать от 4 до 25 символов.
+          </p>
+          <p *ngIf="submitted && formFields.username.errors?.usernameUsed"
+             class="form-error-message">*Пользователь с таким именем уже существует.
+          </p>
         </div>
         <div class="login-register__form-field">
-          <input class="form-element login-register__form-element" formControlName="password"
+          <input [ngClass]="{'form-element--error': submitted && formFields.password.errors }"
+                 class="form-element login-register__form-element" formControlName="password"
                  type="password" placeholder="Пароль"/>
+          <p
+            *ngIf="submitted && formFields.password.errors?.required"
+            class="form-error-message">*Введите пароль
+          </p>
+          <p
+            *ngIf="submitted && (formFields.password.errors?.minlength || formFields.password.errors?.maxlength)"
+            class="form-error-message">*Пароль должен содержать от 6 до 25 символов.
+          </p>
         </div>
         <div class="login-register__form-field">
-          <input class="form-element login-register__form-element"
+          <input [ngClass]="{'form-element--error': submitted && formFields.passwordConfirm.errors }"
+                 class="form-element login-register__form-element"
                  formControlName="passwordConfirm" type="password" placeholder="Подтверждение пароля"/>
-          <p *ngIf="formFields.passwordConfirm.hasError('matching') && formFields.passwordConfirm.touched"
+          <p *ngIf="submitted && formFields.passwordConfirm.errors?.confirmedValidator"
              class="form-error-message">*Пароли не совпадают.</p>
         </div>
       </div>
-      <button class="button button--register login-register__button" type="submit" [disabled]="registerForm.invalid">Зарегистрироваться</button>
+      <button class="button button--register login-register__button" type="submit">Зарегистрироваться</button>
     </form>
     <a class="button button--login login-register__button" routerLink="/login">Вход</a>
   </div>
