@@ -8,11 +8,11 @@ The application can be run locally or in a docker container. To run you need to 
 ### Run Docker
 Pull image from Docker Hub:
 ```
-docker pull vabrosimov/money-manager-frontend:money-manager-frontend
+docker pull vabrosimov/money-manager-frontend:latest
 ```
 When ready, run it:
 ```
-docker run -d -p 8081:80 vabrosimov/money-manager-frontend:money-manager-frontend
+docker run -d -p 8081:80 vabrosimov/money-manager-frontend:latest
 ```
 Application will run by default on port `8081`
 
