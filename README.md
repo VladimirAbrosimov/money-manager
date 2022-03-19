@@ -12,7 +12,7 @@ docker pull vabrosimov/money-manager-frontend:latest
 ```
 When ready, run it:
 ```
-docker run -d -p 8081:80 vabrosimov/money-manager-frontend:latest
+docker run -p 8081:80 vabrosimov/money-manager-frontend:latest
 ```
 Money Manager Frontend will run by default on port `8081`
 
