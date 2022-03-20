@@ -1,30 +1,20 @@
-# MoneyManager
+# Money Manager Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.6.
+## Requirements
+The application can be run locally or in a docker container. To run you need to deploy the backend located in the repository [money-manager-backend](https://github.com/VladimirAbrosimov/money-manager-backend)
 
-## Development server
+## Quick Start
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Run Docker
+Pull money-manager-frontend image from Docker Hub:
+```
+docker pull vabrosimov/money-manager-frontend:latest
+```
+When ready, run it:
+```
+docker run -p 8081:80 vabrosimov/money-manager-frontend:latest
+```
+Money Manager Frontend will run by default on port `8081`
 
 ![Screenshot_3](https://user-images.githubusercontent.com/30374265/157990055-2b39559e-3f8c-4bd0-bfe0-9a35ee3aa7e8.png)
 ![Screenshot_4](https://user-images.githubusercontent.com/30374265/157990062-2df9085e-5846-4084-bf89-c7b1ce721800.png)
