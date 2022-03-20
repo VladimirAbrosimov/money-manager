@@ -1,8 +1,5 @@
 # Money Manager Frontend
 
-## Requirements
-The application can be run locally or in a docker container. To run you need to deploy the backend located in the repository [money-manager-backend](https://github.com/VladimirAbrosimov/money-manager-backend)
-
 ## Quick Start
 
 ### Run Docker
