@@ -37,6 +37,8 @@ export class NotesListComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    window.onbeforeunload = () => this.removeNotes();
   }
 
   ngOnDestroy(): void {
@@ -44,6 +46,7 @@ export class NotesListComponent implements OnInit, OnDestroy {
     this.dateGroupComponents.forEach((dateGroupComponent: ComponentRef<DateGroupComponent>) => {
       dateGroupComponent.destroy();
     });
+    this.removeNotes();
   }
 
 
@@ -61,6 +64,12 @@ export class NotesListComponent implements OnInit, OnDestroy {
         this.appendNoteItemElementToTheTop(note);
       }
     });
+  }
+
+  private removeNotes(): void {
+    for (let dateGroupComponent of this.dateGroupComponents.values()) {
+      dateGroupComponent.instance.removeNotes();
+    }
   }
 
   private appendNoteItemElementAtTheEnd(note: Note): void {

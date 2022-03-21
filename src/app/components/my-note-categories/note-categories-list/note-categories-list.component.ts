@@ -53,6 +53,8 @@ export class NoteCategoriesListComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    window.onbeforeunload = () => this.removeNoteCategories();
   }
 
   ngOnDestroy():void {
@@ -60,7 +62,9 @@ export class NoteCategoriesListComponent implements OnInit, OnDestroy {
     this.noteCategoryItemComponents.forEach((noteCategoryItemComponent: ComponentRef<NoteCategoryItemComponent>) => {
       noteCategoryItemComponent.destroy();
     });
+    this.removeNoteCategories();
   }
+
 
   private loadNoteCategories(): void {
     this.noteCategoryService.getAllNoteCategories().subscribe({
@@ -68,6 +72,15 @@ export class NoteCategoriesListComponent implements OnInit, OnDestroy {
         noteCategories.map((noteCategory: NoteCategory) => this.appendNoteCategoryItemElementAtTheEnd(noteCategory));
       }
     });
+  }
+
+  private removeNoteCategories(): void {
+    this.noteCategoryItemComponents.forEach((noteCategoryItemComponent: ComponentRef<NoteCategoryItemComponent>) => {
+      if (noteCategoryItemComponent.instance.isRemoved === true) {
+        const noteCategory: NoteCategory = noteCategoryItemComponent.instance.category;
+        this.noteCategoryService.deleteNoteCategory(noteCategory.id).subscribe();
+      }
+    })
   }
 
   private appendNoteCategoryItemElementAtTheEnd(noteCategory: NoteCategory): void {

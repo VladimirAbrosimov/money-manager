@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, ComponentRef, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteItemComponent } from '../note-item/note-item.component';
+import {NoteService} from "../../../services/note.service";
 
 @Component({
   selector: 'app-date-group',
@@ -20,7 +21,8 @@ export class DateGroupComponent implements OnInit, OnDestroy {
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private noteService: NoteService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +32,15 @@ export class DateGroupComponent implements OnInit, OnDestroy {
     this.noteItemComponents.forEach((noteItemComponent: ComponentRef<NoteItemComponent>) => {
       noteItemComponent.destroy();
     });
+  }
+
+  public removeNotes(): void {
+    this.noteItemComponents.forEach((noteItemComponent: ComponentRef<NoteItemComponent>) => {
+      if (noteItemComponent.instance.isRemoved === true) {
+        const note: Note = noteItemComponent.instance.note;
+        this.noteService.deleteNote(note.id).subscribe();
+      }
+    })
   }
 
   public appendNoteItemElementAtTheEnd(note: Note): void {

@@ -36,6 +36,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { ImportTransactionsFromBankComponent } from './components/settings/import-transactions-from-bank/import-transactions-from-bank.component';
+import { FileUploadComponent } from './components/utils/file-upload/file-upload.component';
 
 registerLocaleData(localeRu, 'ru');
 
@@ -62,6 +64,8 @@ registerLocaleData(localeRu, 'ru');
     IncomeExpenseForYearChartComponent,
     IncomeExpenseForAllTimeSortedByCategoryChartComponent,
     SettingsComponent,
+    ImportTransactionsFromBankComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,

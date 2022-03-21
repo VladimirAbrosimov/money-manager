@@ -1,30 +1,22 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { NoteCategory } from 'src/app/models/note-category';
-import {NoteCategoryService} from "../../../services/note-category.service";
 
 @Component({
   selector: 'app-note-category-item',
   templateUrl: './note-category-item.component.html',
   styleUrls: ['./note-category-item.component.scss']
 })
-export class NoteCategoryItemComponent implements OnInit, OnDestroy {
+export class NoteCategoryItemComponent implements OnInit {
   category: NoteCategory;
 
   isRemoved: boolean = false;
 
   constructor(
-    private host: ElementRef<HTMLElement>,
-    private noteCategoryService: NoteCategoryService
+    private host: ElementRef<HTMLElement>
   ) { }
 
   ngOnInit(): void {
     this.host.nativeElement.style.setProperty('--category-color', this.category.color);
-  }
-
-  ngOnDestroy(): void {
-    if(this.isRemoved === true) {
-      this.noteCategoryService.deleteNoteCategory(this.category.id).subscribe();
-    }
   }
 
   public removeNoteCategory(): void {
