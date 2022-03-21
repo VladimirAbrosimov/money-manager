@@ -56,7 +56,7 @@ export class AddNoteComponent implements OnInit, OnDestroy {
     this.addNoteForm = this.formBuilder.group({
       type: [this.types[0], Validators.required],
       category: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.min(0)]],
       commentary: [''],
     });
 
